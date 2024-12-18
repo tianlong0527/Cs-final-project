@@ -39,5 +39,11 @@ namespace personal_note
         {
             Month.Text = "2024/12";
         }
+
+        private void richTextBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Note note = new Note();
+            note.Show();
+        }
     }
 }
