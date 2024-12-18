@@ -31,6 +31,7 @@ namespace personal_note
                     rtb.AppendText(i.ToString());
                     rtb.ReadOnly = true;
                     rtb.TabIndex = 0;
+                    rtb.DoubleClick += new System.EventHandler(this.richTextBox_DoubleClick);
                 }
             }
         }
@@ -40,7 +41,7 @@ namespace personal_note
             Month.Text = "2024/12";
         }
 
-        private void richTextBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void richTextBox_DoubleClick(object sender, EventArgs e)
         {
             Note note = new Note();
             note.Show();
