@@ -78,7 +78,7 @@
             // richTextBox1
             // 
             this.richTextBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.richTextBox1.Location = new System.Drawing.Point(50, 140);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(90, 100);
@@ -87,7 +87,6 @@
             // 
             // richTextBox2
             // 
-            this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox2.Location = new System.Drawing.Point(140, 140);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(90, 100);
@@ -96,7 +95,6 @@
             // 
             // richTextBox3
             // 
-            this.richTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox3.Location = new System.Drawing.Point(230, 140);
             this.richTextBox3.Name = "richTextBox3";
             this.richTextBox3.Size = new System.Drawing.Size(90, 100);
@@ -493,6 +491,7 @@
             // 
             this.Month.AutoSize = true;
             this.Month.Font = new System.Drawing.Font("標楷體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Month.ForeColor = System.Drawing.SystemColors.Window;
             this.Month.Location = new System.Drawing.Point(581, 92);
             this.Month.Name = "Month";
             this.Month.Size = new System.Drawing.Size(71, 17);
@@ -503,12 +502,13 @@
             // nextMonth
             // 
             this.nextMonth.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.nextMonth.ForeColor = System.Drawing.Color.Black;
             this.nextMonth.Location = new System.Drawing.Point(655, 89);
             this.nextMonth.Name = "nextMonth";
             this.nextMonth.Size = new System.Drawing.Size(25, 25);
             this.nextMonth.TabIndex = 46;
             this.nextMonth.Text = ">";
-            this.nextMonth.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.nextMonth.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.nextMonth.UseVisualStyleBackColor = true;
             // 
             // lastMonth
@@ -526,7 +526,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(730, 735);
             this.Controls.Add(this.lastMonth);
             this.Controls.Add(this.nextMonth);
