@@ -24,6 +24,7 @@ namespace personal_note
             InitializeCalendar();
             InitializeMonth();
             InitializeButton();
+            InitializeDiary();
         }
 
         private void InitializeCalendar()
@@ -127,6 +128,18 @@ namespace personal_note
             };
             this.Controls.Add(nextMonth);
             this.Controls.Add(lastMonth);
+        }
+
+        private void InitializeDiary()
+        {
+            DiaryTree diaryTree = new DiaryTree();
+            //diaryTree.LoadDiary();
+            //for (int i = 0; i < 35; i++)
+            //{
+            //    string date = $"{year}/{month}/{i + 1}";
+            //    string content = diaryTree.SearchDiary(date);
+            //    dates[i].Text = content;
+            //}
         }
 
         private void richTextBox_DoubleClick(object sender, EventArgs e)
