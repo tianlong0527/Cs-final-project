@@ -49,6 +49,7 @@
             this.rtbTitle.Size = new System.Drawing.Size(755, 83);
             this.rtbTitle.TabIndex = 1;
             this.rtbTitle.Text = "Title";
+            this.rtbTitle.TextChanged += new System.EventHandler(this.rtbTitle_TextChanged);
             this.rtbTitle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rtbTitle_KeyDown);
             // 
             // rtbDate
@@ -74,6 +75,7 @@
             this.rtbTag.Size = new System.Drawing.Size(656, 32);
             this.rtbTag.TabIndex = 5;
             this.rtbTag.Text = "Empty";
+            this.rtbTag.TextChanged += new System.EventHandler(this.rtbTag_TextChanged);
             this.rtbTag.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rtbTag_KeyDown);
             // 
             // lblDate
@@ -112,6 +114,7 @@
             this.rtbNote.Size = new System.Drawing.Size(745, 555);
             this.rtbNote.TabIndex = 8;
             this.rtbNote.Text = "Let\'s write note";
+            this.rtbNote.TextChanged += new System.EventHandler(this.rtbNote_TextChanged);
             this.rtbNote.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox1_KeyDown);
             // 
             // Note
@@ -129,6 +132,7 @@
             this.ForeColor = System.Drawing.SystemColors.Control;
             this.Name = "Note";
             this.Text = "Note";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Note_FormClosing);
             this.ResumeLayout(false);
 
         }
