@@ -36,7 +36,7 @@ namespace personal_note
         {
             setCurrent();
             // Initialize dates
-            for (int i = 0;i < 35;i++)
+            for (int i = 0; i < 35; i++)
             {
                 int date = i - day + 1;
                 RichTextBox rtb = new RichTextBox();
@@ -65,7 +65,7 @@ namespace personal_note
             }
 
             // Initialize week
-            for (int i = 0;i < 7;i++)
+            for (int i = 0; i < 7; i++)
             {
                 TextBox tb = new TextBox();
                 tb.Size = new Size(80, 30);
@@ -75,7 +75,7 @@ namespace personal_note
                 tb.ForeColor = Color.White;
                 tb.BorderStyle = BorderStyle.FixedSingle;
                 tb.TextAlign = HorizontalAlignment.Center;
-                switch(i)
+                switch (i)
                 {
                     case 0:
                         tb.Text = "日";
@@ -132,6 +132,7 @@ namespace personal_note
                 Font = new Font("標楷體", 8),
                 FlatStyle = FlatStyle.Flat
             };
+            nextMonth.Click += nextMonth_Click;
 
             lastMonth = new Button()
             {
@@ -143,6 +144,8 @@ namespace personal_note
                 Font = new Font("標楷體", 8),
                 FlatStyle = FlatStyle.Flat
             };
+            lastMonth.Click += lastMonth_Click;
+
             this.Controls.Add(nextMonth);
             this.Controls.Add(lastMonth);
         }
@@ -213,5 +216,62 @@ namespace personal_note
                     break;
             }
         }
+
+        private void nextMonth_Click(object sender, EventArgs e)
+        {
+            // Console.WriteLine("nextMonth_Click");
+            month++;
+            if (month == 13)
+            {
+                month = 1;
+                year++;
+            }
+            updateCalendar();
+        }
+
+        private void lastMonth_Click(object sender, EventArgs e)
+        {
+            // Console.WriteLine("lastMonth_Click");
+            month--;
+            if (month == 0)
+            {
+                month = 12;
+                year--;
+            }
+            updateCalendar();
+        }
+
+        private void updateCalendar()
+        {
+            setDay();
+            int previousMonth = month - 1;
+            int previousYear = year;
+            if (previousMonth == 0)
+            {
+                previousMonth = 12;
+                previousYear--;
+            }
+            lastMonthDays = DateTime.DaysInMonth(previousYear, previousMonth);
+            currentMonthDays = DateTime.DaysInMonth(year, month);
+            Month.Text = $"{year}/{month}";
+            for (int i = 0;i < 35;i++)
+            {
+                dates[i].Clear();
+                int date = i - day + 1;
+                dates[i].ForeColor = Color.White;
+                if (date <= 0)
+                {
+                    date = lastMonthDays + date;
+                    dates[i].ForeColor = Color.Gray;
+                }
+                else if (date > currentMonthDays)
+                {
+                    date = date - currentMonthDays;
+                    dates[i].ForeColor = Color.Gray;
+                }
+                dates[i].AppendText(date.ToString());
+            }
+        }
+
     }
 }
