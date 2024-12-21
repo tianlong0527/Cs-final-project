@@ -13,6 +13,7 @@ namespace personal_note
     public partial class Note : Form
     {
         bool isTitleEmpty = true,isTagEmpty = true,isNoteEmpty = true;
+        DiaryNode diaryNode = new DiaryNode(12,31);
         public Note()
         {
             InitializeComponent();
@@ -27,6 +28,37 @@ namespace personal_note
                 isTitleEmpty = true;
                 rtbTitle.Text = "Title";
             }
+        }
+
+        private void Note_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("是否存儲內容?","儲存",MessageBoxButtons.YesNoCancel,MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes) Console.WriteLine("要儲存");
+            else if (result == DialogResult.No) Console.WriteLine("不要儲存");
+            else if (result == DialogResult.Cancel)
+            {
+                Console.WriteLine("取消離開");
+                e.Cancel = true;
+            }
+        }
+
+        private void rtbTitle_TextChanged(object sender, EventArgs e)
+        {
+            diaryNode.title = rtbTitle.Text;
+            Console.WriteLine(diaryNode.title);
+        }
+
+        private void rtbTag_TextChanged(object sender, EventArgs e)
+        {
+            diaryNode.tag.Add(rtbTag.Text);
+            Console.WriteLine(rtbTag.Text);
+        }
+
+        private void rtbNote_TextChanged(object sender, EventArgs e)
+        {
+            diaryNode.content = rtbNote.Text;
+            Console.WriteLine(diaryNode.content);
         }
 
         private void richTextBox1_KeyDown(object sender, KeyEventArgs e)
