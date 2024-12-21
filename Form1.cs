@@ -18,6 +18,11 @@ namespace personal_note
         private Button nextMonth, lastMonth;
         private int year = 2024;
         private int month = 12;
+        private int day = 0;
+        private int lastMonthDays, currentMonthDays;
+        private static DateTime firstDayOfMonth, now;
+        private DayOfWeek firstDayOfWeek;
+
         public Form1()
         {
             InitializeComponent();
@@ -29,9 +34,11 @@ namespace personal_note
 
         private void InitializeCalendar()
         {
+            setCurrent();
             // Initialize dates
             for (int i = 0;i < 35;i++)
             {
+                int date = i - day + 1;
                 RichTextBox rtb = new RichTextBox();
                 rtb.Size = new Size(80, 90);
                 rtb.Location = new Point(40 + 80 * (i % 7), 100 + 90 * (i / 7));
@@ -40,7 +47,17 @@ namespace personal_note
                 rtb.BorderStyle = BorderStyle.Fixed3D;
                 rtb.Font = new Font("Arial", 10);
                 rtb.SelectionAlignment = HorizontalAlignment.Right;
-                rtb.AppendText((i + 1).ToString());
+                if (date <= 0)
+                {
+                    date = lastMonthDays + date;
+                    rtb.ForeColor = Color.Gray;
+                }
+                else if (date > currentMonthDays)
+                {
+                    date = date - currentMonthDays;
+                    rtb.ForeColor = Color.Gray;
+                }
+                rtb.AppendText(date.ToString());
                 rtb.ReadOnly = true;
                 rtb.DoubleClick += richTextBox_DoubleClick;
                 dates.Add(rtb);
@@ -146,6 +163,55 @@ namespace personal_note
         {
             Note note = new Note();
             note.Show();
+        }
+
+        private void setCurrent()
+        {
+            // initialize current year and month
+            now = DateTime.Now;
+            year = now.Year;
+            month = now.Month;
+            setDay();
+            int previousMonth = month - 1;
+            int previousYear = year;
+            if (previousMonth == 0)
+            {
+                previousMonth = 12;
+                previousYear--;
+            }
+            lastMonthDays = DateTime.DaysInMonth(previousYear, previousMonth);
+            currentMonthDays = DateTime.DaysInMonth(year, month);
+        }
+
+        private void setDay()
+        {
+            firstDayOfMonth = new DateTime(year, month, 1);
+            firstDayOfWeek = firstDayOfMonth.DayOfWeek;
+
+            switch (firstDayOfWeek)
+            {
+                case DayOfWeek.Sunday:
+                    day = 0;
+                    break;
+                case DayOfWeek.Monday:
+                    day = 1;
+                    break;
+                case DayOfWeek.Tuesday:
+                    day = 2;
+                    break;
+                case DayOfWeek.Wednesday:
+                    day = 3;
+                    break;
+                case DayOfWeek.Thursday:
+                    day = 4;
+                    break;
+                case DayOfWeek.Friday:
+                    day = 5;
+                    break;
+                case DayOfWeek.Saturday:
+                    day = 6;
+                    break;
+            }
         }
     }
 }
