@@ -13,7 +13,7 @@ namespace personal_note
     public partial class Note : Form
     {
         bool isTitleEmpty = true,isTagEmpty = true,isNoteEmpty = true;
-        DiaryNode diaryNode = new DiaryNode(12,31);
+        DiaryNode diaryNode = new DiaryNode(2024,12,31);
         public Note()
         {
             InitializeComponent();
