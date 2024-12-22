@@ -5,37 +5,122 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+
 
 namespace personal_note
 {
     internal class DiaryTree
     {
-        int year;
-        public List<List<List<DiaryNode>>> root = new List<List<List<DiaryNode>>>();
-        public DiaryTree(int year) 
+        int year,month,day;
+        List<DiaryNode> nodes;
+        DiaryTree sibling;
+        DiaryTree child;
+
+        public DiaryTree(int year,int month,int day) 
         {
             this.year = year;
-            for (int i = 0; i < 13; i++)
-            {
-                root.Add(new List<List<DiaryNode>>());
-                for (int j = 0; j < 32; j++)
-                {
-                    root[i].Add(new List<DiaryNode>());
-                }
-            }
+            this.month = month;
+            this.day = day;
+            this.nodes = new List<DiaryNode>(); 
+            this.sibling = null;
+            this.child = null;
         }
 
         public void AddDiary(DiaryNode diaryNode)
         {
-            root[diaryNode.month][diaryNode.day].Add(diaryNode);
-            Console.WriteLine($"新增成功: {diaryNode.month}月{diaryNode.day} \n");
+            DiaryTree yearNode = searchYear(diaryNode.year, this);
+            DiaryTree monthNode = searchMonth(diaryNode.month, yearNode);
+            DiaryTree dayNode = searchDay(diaryNode.day, monthNode);
+            dayNode.nodes.Add(diaryNode);
+            Console.WriteLine($"新增成功: {diaryNode.year}年{diaryNode.month}月{diaryNode.day} \n");
         }
 
+        public DiaryTree searchYear(int year,DiaryTree diaryTree)
+        {
+            DiaryTree copTree = null;  //第一次一定是root，所以不會發生空指標
+            while(diaryTree!= null)
+            {
+                if(diaryTree.year == year)
+                {
+                    return diaryTree;
+                }
+                copTree = diaryTree;
+                diaryTree = diaryTree.sibling;
+            }
+
+            DiaryTree diaryTree1 = new DiaryTree(year,-1,-1);
+            copTree.sibling = diaryTree1;
+            return diaryTree1;
+        }
+
+        public DiaryTree searchMonth(int month, DiaryTree yearNode)
+        {
+            DiaryTree copTree = yearNode.child;
+            if(copTree == null)                  //代表yearNode的child是null，要新增一個給他
+            {
+                DiaryTree diaryTree = new DiaryTree(-1, month, -1);
+                yearNode.child = diaryTree;
+                return diaryTree;
+            }
+
+            yearNode = yearNode.child;
+            while (yearNode != null)
+            {
+                if (yearNode.month == month)
+                {
+                    return yearNode;
+                }
+                copTree = yearNode;
+                yearNode = yearNode.sibling;
+            }
+
+            DiaryTree diaryTree1 = new DiaryTree(-1, month, -1);
+            copTree.sibling = diaryTree1;
+            return diaryTree1;
+        }
+
+        public DiaryTree searchDay(int day, DiaryTree monthNode)
+        {
+            DiaryTree copTree = monthNode.child;
+            if (copTree == null)                  //代表monthNode的child是null，要新增一個給他
+            {
+                DiaryTree diaryTree = new DiaryTree(-1, -1, day);
+                monthNode.child = diaryTree;
+                return diaryTree;
+            }
+
+            monthNode = monthNode.child;
+            while (monthNode != null)
+            {
+                if (monthNode.day == day)
+                {
+                    return monthNode;
+                }
+                copTree = monthNode;
+                monthNode = monthNode.sibling;
+            }
+
+            DiaryTree diaryTree1 = new DiaryTree(-1, -1, day);
+            copTree.sibling = diaryTree1;
+            return diaryTree1;
+        }
+
+
+
+        //限定root使用
         public void DeleteDiary(DiaryNode diaryNode)
         {
-            root[diaryNode.month][diaryNode.day].Remove(diaryNode);
-            Console.WriteLine($"新增成功: {diaryNode.month}月{diaryNode.day} \n");
+            DiaryNode diaryNode1 = SearchDiary(diaryNode.year,diaryNode.month,diaryNode.day,diaryNode.title);
+            if(diaryNode1 == null)
+            {
+                Console.WriteLine("找不到");
+                return;
+            }
+            DiaryTree yearNode = searchYear(diaryNode.year, this);
+            DiaryTree monthNode = searchMonth(diaryNode.month, yearNode);
+            DiaryTree dayNode = searchDay(diaryNode.day, monthNode);
+            dayNode.nodes.Remove(diaryNode);
+            Console.WriteLine($"刪除成功: {diaryNode.month}月{diaryNode.day} \n");
         }
 
         public void ModifyDiary(string date, string content)
@@ -43,12 +128,41 @@ namespace personal_note
             // Modify diary in the tree
         }
 
-        public DiaryNode SearchDiary(int month,int day,string stitle)
+        //限定root使用
+        public DiaryNode SearchDiary(int year,int month,int day,string title)
         {
-            for(int i = 0;i < root[month][day].Count;i++)
+            DiaryTree diaryTree = this;
+
+            //尋找年
+            while(diaryTree != null && diaryTree.year != year)
             {
-                if (root[month][day][i].title.Equals(stitle)) return root[month][day][i];
+                diaryTree = diaryTree.sibling;
             }
+            if (diaryTree == null) return null;
+
+            //尋找月
+            diaryTree = diaryTree.child;
+            while (diaryTree != null && diaryTree.month != month)
+            {
+                diaryTree = diaryTree.sibling;
+            }
+            if (diaryTree == null) return null;
+
+            //尋找日
+            diaryTree = diaryTree.child;
+            while (diaryTree != null && diaryTree.day != day)
+            {
+                diaryTree = diaryTree.sibling;
+            }
+            if (diaryTree == null) return null;
+
+            //尋找符合的title
+            for(int i = 0;i < diaryTree.nodes.Count(); i++)
+            {
+                if (diaryTree.nodes[i].title == title) return diaryTree.nodes[i];
+            }
+            
+
             return null;
         }
 
@@ -61,20 +175,29 @@ namespace personal_note
         {
             // Load diary from the file
         }
+
+        public void showTree()
+        {
+            ;
+        }
     }
 
     internal class DiaryNode
     {
-        public int month,day;
+        public int month,day,year;
         public string title;
         public List<String> tag;
-        bool old;
+        //bool old;
         public string content;
 
-        public DiaryNode(int month,int day)
+        public DiaryNode(int year,int month,int day)
         {
+            this.year = year;
             this.month = month;
             this.day = day;
+            this.tag = new List<String>();
+            title = "嗨";
+            content = "嗨嗨";
         }
     }
 }

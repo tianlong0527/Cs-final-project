@@ -152,7 +152,7 @@ namespace personal_note
 
         private void InitializeDiary()
         {
-            DiaryTree diaryTree = new DiaryTree(13);
+            DiaryTree diaryTree = new DiaryTree(2024,12,22);
             //diaryTree.LoadDiary();
             //for (int i = 0; i < 35; i++)
             //{
