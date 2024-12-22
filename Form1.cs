@@ -18,6 +18,11 @@ namespace personal_note
         private Button nextMonth, lastMonth;
         private int year = 2024;
         private int month = 12;
+        private int day = 0;
+        private int lastMonthDays, currentMonthDays;
+        private static DateTime firstDayOfMonth, now;
+        private DayOfWeek firstDayOfWeek;
+
         public Form1()
         {
             InitializeComponent();
@@ -29,9 +34,11 @@ namespace personal_note
 
         private void InitializeCalendar()
         {
+            setCurrent();
             // Initialize dates
-            for (int i = 0;i < 35;i++)
+            for (int i = 0; i < 35; i++)
             {
+                int date = i - day + 1;
                 RichTextBox rtb = new RichTextBox();
                 rtb.Size = new Size(80, 90);
                 rtb.Location = new Point(40 + 80 * (i % 7), 100 + 90 * (i / 7));
@@ -40,7 +47,17 @@ namespace personal_note
                 rtb.BorderStyle = BorderStyle.Fixed3D;
                 rtb.Font = new Font("Arial", 10);
                 rtb.SelectionAlignment = HorizontalAlignment.Right;
-                rtb.AppendText((i + 1).ToString());
+                if (date <= 0)
+                {
+                    date = lastMonthDays + date;
+                    rtb.ForeColor = Color.Gray;
+                }
+                else if (date > currentMonthDays)
+                {
+                    date = date - currentMonthDays;
+                    rtb.ForeColor = Color.Gray;
+                }
+                rtb.AppendText(date.ToString());
                 rtb.ReadOnly = true;
                 rtb.DoubleClick += richTextBox_DoubleClick;
                 dates.Add(rtb);
@@ -48,7 +65,7 @@ namespace personal_note
             }
 
             // Initialize week
-            for (int i = 0;i < 7;i++)
+            for (int i = 0; i < 7; i++)
             {
                 TextBox tb = new TextBox();
                 tb.Size = new Size(80, 30);
@@ -58,7 +75,7 @@ namespace personal_note
                 tb.ForeColor = Color.White;
                 tb.BorderStyle = BorderStyle.FixedSingle;
                 tb.TextAlign = HorizontalAlignment.Center;
-                switch(i)
+                switch (i)
                 {
                     case 0:
                         tb.Text = "日";
@@ -115,6 +132,7 @@ namespace personal_note
                 Font = new Font("標楷體", 8),
                 FlatStyle = FlatStyle.Flat
             };
+            nextMonth.Click += nextMonth_Click;
 
             lastMonth = new Button()
             {
@@ -126,6 +144,8 @@ namespace personal_note
                 Font = new Font("標楷體", 8),
                 FlatStyle = FlatStyle.Flat
             };
+            lastMonth.Click += lastMonth_Click;
+
             this.Controls.Add(nextMonth);
             this.Controls.Add(lastMonth);
         }
@@ -147,5 +167,111 @@ namespace personal_note
             Note note = new Note();
             note.Show();
         }
+
+        private void setCurrent()
+        {
+            // initialize current year and month
+            now = DateTime.Now;
+            year = now.Year;
+            month = now.Month;
+            setDay();
+            int previousMonth = month - 1;
+            int previousYear = year;
+            if (previousMonth == 0)
+            {
+                previousMonth = 12;
+                previousYear--;
+            }
+            lastMonthDays = DateTime.DaysInMonth(previousYear, previousMonth);
+            currentMonthDays = DateTime.DaysInMonth(year, month);
+        }
+
+        private void setDay()
+        {
+            firstDayOfMonth = new DateTime(year, month, 1);
+            firstDayOfWeek = firstDayOfMonth.DayOfWeek;
+
+            switch (firstDayOfWeek)
+            {
+                case DayOfWeek.Sunday:
+                    day = 0;
+                    break;
+                case DayOfWeek.Monday:
+                    day = 1;
+                    break;
+                case DayOfWeek.Tuesday:
+                    day = 2;
+                    break;
+                case DayOfWeek.Wednesday:
+                    day = 3;
+                    break;
+                case DayOfWeek.Thursday:
+                    day = 4;
+                    break;
+                case DayOfWeek.Friday:
+                    day = 5;
+                    break;
+                case DayOfWeek.Saturday:
+                    day = 6;
+                    break;
+            }
+        }
+
+        private void nextMonth_Click(object sender, EventArgs e)
+        {
+            // Console.WriteLine("nextMonth_Click");
+            month++;
+            if (month == 13)
+            {
+                month = 1;
+                year++;
+            }
+            updateCalendar();
+        }
+
+        private void lastMonth_Click(object sender, EventArgs e)
+        {
+            // Console.WriteLine("lastMonth_Click");
+            month--;
+            if (month == 0)
+            {
+                month = 12;
+                year--;
+            }
+            updateCalendar();
+        }
+
+        private void updateCalendar()
+        {
+            setDay();
+            int previousMonth = month - 1;
+            int previousYear = year;
+            if (previousMonth == 0)
+            {
+                previousMonth = 12;
+                previousYear--;
+            }
+            lastMonthDays = DateTime.DaysInMonth(previousYear, previousMonth);
+            currentMonthDays = DateTime.DaysInMonth(year, month);
+            Month.Text = $"{year}/{month}";
+            for (int i = 0;i < 35;i++)
+            {
+                dates[i].Clear();
+                int date = i - day + 1;
+                dates[i].ForeColor = Color.White;
+                if (date <= 0)
+                {
+                    date = lastMonthDays + date;
+                    dates[i].ForeColor = Color.Gray;
+                }
+                else if (date > currentMonthDays)
+                {
+                    date = date - currentMonthDays;
+                    dates[i].ForeColor = Color.Gray;
+                }
+                dates[i].AppendText(date.ToString());
+            }
+        }
+
     }
 }
