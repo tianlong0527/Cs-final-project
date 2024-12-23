@@ -30,6 +30,8 @@ namespace personal_note
 
         public void BuildTreeFromFiles()
         {
+            // if data folder is empty, return
+            if (!Directory.Exists(@"./../../data/")) return;
             string[] files = Directory.GetFiles(@"./../../data/");
             foreach (string file in files)
             {
