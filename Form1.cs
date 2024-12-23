@@ -22,7 +22,7 @@ namespace personal_note
         private int lastMonthDays, currentMonthDays;
         private static DateTime firstDayOfMonth, now;
         private DayOfWeek firstDayOfWeek;
-
+        internal static DiaryTreeNode root = new DiaryTreeNode(0, 0, 0);
         public Form1()
         {
             InitializeComponent();
@@ -30,6 +30,7 @@ namespace personal_note
             InitializeMonth();
             InitializeButton();
             InitializeDiary();
+            root.BuildTreeFromFiles();
         }
 
         private void InitializeCalendar()
@@ -47,6 +48,7 @@ namespace personal_note
                 rtb.BorderStyle = BorderStyle.Fixed3D;
                 rtb.Font = new Font("Arial", 10);
                 rtb.SelectionAlignment = HorizontalAlignment.Right;
+                
                 if (date <= 0)
                 {
                     date = lastMonthDays + date;
@@ -152,7 +154,7 @@ namespace personal_note
 
         private void InitializeDiary()
         {
-            DiaryTree diaryTree = new DiaryTree(2024,12,22);
+            DiaryTreeNode diaryTree = new DiaryTreeNode(2024,12,22);
             //diaryTree.LoadDiary();
             //for (int i = 0; i < 35; i++)
             //{
@@ -164,7 +166,7 @@ namespace personal_note
 
         private void richTextBox_DoubleClick(object sender, EventArgs e)
         {
-            Note note = new Note();
+            Note note = new Note(year, month, 0 /* TODO day*/);
             note.Show();
         }
 
