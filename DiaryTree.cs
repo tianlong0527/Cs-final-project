@@ -227,28 +227,4 @@ namespace personal_note
         }
     }
 
-    internal class DiaryNode
-    {
-        public int month,day,year;
-        public string title;
-        public List<String> tag;
-        //bool old;
-        public string content;
-
-        public DiaryNode(int year,int month,int day)
-        {
-            this.year = year;
-            this.month = month;
-            this.day = day;
-            this.tag = new List<String>();
-            title = "嗨";
-            content = "嗨嗨";
-        }
-
-        public void showDiaryNode()
-        {
-            Console.WriteLine($"year:{year} month:{month} day:{day}");
-            Console.WriteLine(title+"\n"+content);
-        }
-    }
 }
