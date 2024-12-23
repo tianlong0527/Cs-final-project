@@ -26,5 +26,11 @@ namespace personal_note
             title = "嗨";
             content = "嗨嗨";
         }
+
+        public void showDiaryNode()
+        {
+            Console.WriteLine($"year:{year} month:{month} day:{day}");
+            Console.WriteLine(title + "\n" + content);
+        }
     }
 }
