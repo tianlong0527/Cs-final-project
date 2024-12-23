@@ -176,9 +176,22 @@ namespace personal_note
             // Load diary from the file
         }
 
-        public void showTree()
+        public static void showTree(DiaryTree diaryTree)
         {
-            ;
+            if(diaryTree == null) return;
+
+            if(diaryTree.day != 0)
+            {
+                for(int i = 0; i < diaryTree.nodes.Count();i++)
+                {
+                    diaryTree.nodes[i].showDiaryNode();
+                }
+            }
+            else
+            {
+                showTree(diaryTree.sibling);
+                showTree(diaryTree.child);
+            }
         }
     }
 
@@ -198,6 +211,12 @@ namespace personal_note
             this.tag = new List<String>();
             title = "嗨";
             content = "嗨嗨";
+        }
+
+        public void showDiaryNode()
+        {
+            Console.WriteLine($"year:{year} month:{month} day:{day}");
+            Console.WriteLine(title+"\n"+content);
         }
     }
 }
