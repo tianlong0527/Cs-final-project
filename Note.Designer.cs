@@ -41,6 +41,7 @@
             this.rtbTitle.AutoWordSelection = true;
             this.rtbTitle.BackColor = System.Drawing.SystemColors.MenuText;
             this.rtbTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbTitle.Cursor = System.Windows.Forms.Cursors.Default;
             this.rtbTitle.Font = new System.Drawing.Font("新細明體", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rtbTitle.ForeColor = System.Drawing.SystemColors.Window;
             this.rtbTitle.Location = new System.Drawing.Point(54, 69);
@@ -68,6 +69,7 @@
             // 
             this.rtbTag.BackColor = System.Drawing.SystemColors.WindowText;
             this.rtbTag.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbTag.Cursor = System.Windows.Forms.Cursors.Default;
             this.rtbTag.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rtbTag.ForeColor = System.Drawing.SystemColors.Window;
             this.rtbTag.Location = new System.Drawing.Point(136, 236);
@@ -107,6 +109,7 @@
             // 
             this.rtbNote.BackColor = System.Drawing.SystemColors.WindowText;
             this.rtbNote.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbNote.Cursor = System.Windows.Forms.Cursors.Default;
             this.rtbNote.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rtbNote.ForeColor = System.Drawing.SystemColors.Window;
             this.rtbNote.Location = new System.Drawing.Point(46, 299);
