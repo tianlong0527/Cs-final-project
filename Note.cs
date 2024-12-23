@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,10 +15,11 @@ namespace personal_note
     public partial class Note : Form
     {
         bool isTitleEmpty = true,isTagEmpty = true,isNoteEmpty = true;
-        DiaryNode diaryNode = new DiaryNode(2024,12,31);
-        public Note()
+        DiaryNode diaryNode;
+        public Note(int year, int month, int day)
         {
             InitializeComponent();
+            this.diaryNode = new DiaryNode(year, month, day);
         }
 
         private void rtbTitle_KeyDown(object sender, KeyEventArgs e)
@@ -34,7 +37,12 @@ namespace personal_note
         {
             DialogResult result = MessageBox.Show("是否存儲內容?","儲存",MessageBoxButtons.YesNoCancel,MessageBoxIcon.Question);
 
-            if (result == DialogResult.Yes) Console.WriteLine("要儲存");
+            if (result == DialogResult.Yes) 
+            {
+                Console.WriteLine("要儲存");
+                Form1.root.AddDiary(diaryNode);
+                Form1.root.SaveDiary(diaryNode);
+            }
             else if (result == DialogResult.No) Console.WriteLine("不要儲存");
             else if (result == DialogResult.Cancel)
             {
@@ -42,6 +50,8 @@ namespace personal_note
                 e.Cancel = true;
             }
         }
+
+        
 
         private void rtbTitle_TextChanged(object sender, EventArgs e)
         {
