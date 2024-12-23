@@ -31,7 +31,11 @@ namespace personal_note
         public void BuildTreeFromFiles()
         {
             // if data folder is empty, return
-            if (!Directory.Exists(@"./../../data/")) return;
+            if (!Directory.Exists(@"./../../data/"))
+            {
+                Directory.CreateDirectory(@"./../../data/");
+                return;
+            }
             string[] files = Directory.GetFiles(@"./../../data/");
             foreach (string file in files)
             {
@@ -210,7 +214,7 @@ namespace personal_note
         }
 
 
-        public static void showTree(DiaryTree diaryTree)
+        public static void showTree(DiaryTreeNode diaryTree)
         {
             if(diaryTree == null) return;
 
