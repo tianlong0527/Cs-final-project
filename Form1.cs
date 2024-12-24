@@ -17,7 +17,6 @@ namespace personal_note
         private int lastMonthDays, currentMonthDays;
         private static DateTime firstDayOfMonth, now;
         private DayOfWeek firstDayOfWeek;
-        internal static DiaryTreeNode root = new DiaryTreeNode(0, 0, 0);
         public Form1()
         {
             InitializeComponent();
@@ -25,7 +24,7 @@ namespace personal_note
             InitializeMonth();
             InitializeButton();
             InitializeDiary();
-            root.BuildTreeFromFiles();
+            DiaryTree.BuildTreeFromFiles();
         }
 
         private void InitializeCalendar()
