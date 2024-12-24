@@ -161,7 +161,8 @@ namespace personal_note
 
         private void richTextBox_DoubleClick(object sender, EventArgs e)
         {
-            Note note = new Note(year, month, 0 /* TODO day*/);
+            RichTextBox rtb = sender as RichTextBox;
+            Note note = new Note(year, month, int.Parse(rtb.Text));
             note.Show();
         }
 
