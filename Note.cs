@@ -5,7 +5,7 @@ namespace personal_note
 {
     public partial class Note : Form
     {
-        bool isTitleEmpty = true, isTagEmpty = true, isNoteEmpty = true;
+        bool isTitleEmpty = true, isNoteEmpty = true;
         DiaryNode diaryNode;
         public Note(int year, int month, int day)
         {
@@ -33,6 +33,7 @@ namespace personal_note
                 Console.WriteLine("要儲存");
                 DiaryTree.AddDiary(diaryNode);
                 DiaryTree.SaveDiary(diaryNode);
+                diaryNode.showDiaryNode();
             }
             else if (result == DialogResult.No) Console.WriteLine("不要儲存");
             else if (result == DialogResult.Cancel)
@@ -41,8 +42,8 @@ namespace personal_note
                 e.Cancel = true;
             }
 
-            DiaryTree.showTree(DiaryTree.root);
-            Console.WriteLine("結束遍歷");
+            //DiaryTree.showTree(DiaryTree.root);
+            //Console.WriteLine("結束遍歷");
         }
 
 
@@ -53,10 +54,22 @@ namespace personal_note
             //Console.WriteLine(diaryNode.title);
         }
 
-        private void rtbTag_TextChanged(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
-            diaryNode.tag.Add(rtbTag.Text);
-            //Console.WriteLine(rtbTag.Text);
+            if(btnAdd.Text.Equals("Add"))
+            {
+                rtbAdd.Visible = true;
+                rtbTag.Visible = false;
+                btnAdd.Text = "Ensure";
+            }else if (btnAdd.Text.Equals("Ensure"))
+            {
+                rtbTag.Text += rtbAdd.Text + ", ";
+                rtbTag.Visible = true;
+                rtbAdd.Visible = false;
+                diaryNode.tag.Add(rtbAdd.Text);
+                rtbAdd.Text = "";
+                btnAdd.Text = "Add";
+            }
         }
 
         private void rtbNote_TextChanged(object sender, EventArgs e)
@@ -76,15 +89,5 @@ namespace personal_note
             }
         }
 
-        private void rtbTag_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (isTagEmpty) rtbTag.Text = "";
-            isTagEmpty = false;
-            if (e.KeyCode == Keys.Back && rtbTag.Text.Length <= 1)
-            {
-                isTagEmpty = true;
-                rtbTag.Text = "Empty";
-            }
-        }
     }
 }
