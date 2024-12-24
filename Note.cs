@@ -40,6 +40,9 @@ namespace personal_note
                 Console.WriteLine("取消離開");
                 e.Cancel = true;
             }
+
+            DiaryTree.showTree(DiaryTree.root);
+            Console.WriteLine("結束遍歷");
         }
 
 
@@ -47,19 +50,19 @@ namespace personal_note
         private void rtbTitle_TextChanged(object sender, EventArgs e)
         {
             diaryNode.title = rtbTitle.Text;
-            Console.WriteLine(diaryNode.title);
+            //Console.WriteLine(diaryNode.title);
         }
 
         private void rtbTag_TextChanged(object sender, EventArgs e)
         {
             diaryNode.tag.Add(rtbTag.Text);
-            Console.WriteLine(rtbTag.Text);
+            //Console.WriteLine(rtbTag.Text);
         }
 
         private void rtbNote_TextChanged(object sender, EventArgs e)
         {
             diaryNode.content = rtbNote.Text;
-            Console.WriteLine(diaryNode.content);
+            //Console.WriteLine(diaryNode.content);
         }
 
         private void richTextBox1_KeyDown(object sender, KeyEventArgs e)
