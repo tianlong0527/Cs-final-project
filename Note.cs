@@ -31,8 +31,8 @@ namespace personal_note
             if (result == DialogResult.Yes)
             {
                 Console.WriteLine("要儲存");
-                Form1.root.AddDiary(diaryNode);
-                Form1.root.SaveDiary(diaryNode);
+                DiaryTree.AddDiary(diaryNode);
+                DiaryTree.SaveDiary(diaryNode);
             }
             else if (result == DialogResult.No) Console.WriteLine("不要儲存");
             else if (result == DialogResult.Cancel)
