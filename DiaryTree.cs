@@ -27,8 +27,12 @@ namespace personal_note
         public static void AddDiary(DiaryNode diaryNode)
         {
             DiaryTreeNode yearNode = searchYear(diaryNode.year, root);
+            //Console.WriteLine($"add {yearNode.year}/{yearNode.month}/{yearNode.day}\n");
             DiaryTreeNode monthNode = searchMonth(diaryNode.month, yearNode);
+            //Console.WriteLine(yearNode.child == monthNode);
+            //Console.WriteLine($"add {monthNode.year}/{monthNode.month}/{monthNode.day}\n");
             DiaryTreeNode dayNode = searchDay(diaryNode.day, monthNode);
+            //Console.WriteLine($"add {dayNode.year}/{dayNode.month}/{dayNode.day}\n");
             dayNode.nodes.Add(diaryNode);
             diaryNode.index = dayNode.nodes.Count() - 1;
             Console.WriteLine($"新增成功: {diaryNode.year}年{diaryNode.month}月{diaryNode.day} \n");
@@ -47,7 +51,7 @@ namespace personal_note
                 DiaryTreeNode = DiaryTreeNode.sibling;
             }
 
-            DiaryTreeNode DiaryTreeNode1 = new DiaryTreeNode(year, -1, -1);
+            DiaryTreeNode DiaryTreeNode1 = new DiaryTreeNode(year, 0, 0);
             copTree.sibling = DiaryTreeNode1;
             return DiaryTreeNode1;
         }
@@ -57,7 +61,7 @@ namespace personal_note
             DiaryTreeNode copTree = yearNode.child;
             if (copTree == null)                  //代表yearNode的child是null，要新增一個給他
             {
-                DiaryTreeNode DiaryTreeNode = new DiaryTreeNode(-1, month, -1);
+                DiaryTreeNode DiaryTreeNode = new DiaryTreeNode(0, month, 0);
                 yearNode.child = DiaryTreeNode;
                 return DiaryTreeNode;
             }
@@ -73,7 +77,7 @@ namespace personal_note
                 yearNode = yearNode.sibling;
             }
 
-            DiaryTreeNode DiaryTreeNode1 = new DiaryTreeNode(-1, month, -1);
+            DiaryTreeNode DiaryTreeNode1 = new DiaryTreeNode(0, month, 0);
             copTree.sibling = DiaryTreeNode1;
             return DiaryTreeNode1;
         }
@@ -83,7 +87,7 @@ namespace personal_note
             DiaryTreeNode copTree = monthNode.child;
             if (copTree == null)                  //代表monthNode的child是null，要新增一個給他
             {
-                DiaryTreeNode DiaryTreeNode = new DiaryTreeNode(-1, -1, day);
+                DiaryTreeNode DiaryTreeNode = new DiaryTreeNode(0, 0, day);
                 monthNode.child = DiaryTreeNode;
                 return DiaryTreeNode;
             }
@@ -197,6 +201,7 @@ namespace personal_note
         {
             if(diaryTree == null) return;
 
+            //Console.WriteLine($"{diaryTree.year}/{diaryTree.month}/{diaryTree.day}\n");
             if(diaryTree.day != 0)
             {
                 for(int i = 0; i < diaryTree.nodes.Count();i++)

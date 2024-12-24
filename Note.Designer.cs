@@ -34,6 +34,8 @@
             this.lblDate = new System.Windows.Forms.RichTextBox();
             this.lblTag = new System.Windows.Forms.RichTextBox();
             this.rtbNote = new System.Windows.Forms.RichTextBox();
+            this.rtbAdd = new System.Windows.Forms.RichTextBox();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // rtbTitle
@@ -74,11 +76,9 @@
             this.rtbTag.ForeColor = System.Drawing.SystemColors.Window;
             this.rtbTag.Location = new System.Drawing.Point(136, 236);
             this.rtbTag.Name = "rtbTag";
-            this.rtbTag.Size = new System.Drawing.Size(656, 32);
+            this.rtbTag.Size = new System.Drawing.Size(586, 32);
             this.rtbTag.TabIndex = 5;
-            this.rtbTag.Text = "Empty";
-            this.rtbTag.TextChanged += new System.EventHandler(this.rtbTag_TextChanged);
-            this.rtbTag.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rtbTag_KeyDown);
+            this.rtbTag.Text = "";
             // 
             // lblDate
             // 
@@ -120,12 +120,39 @@
             this.rtbNote.TextChanged += new System.EventHandler(this.rtbNote_TextChanged);
             this.rtbNote.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox1_KeyDown);
             // 
+            // rtbAdd
+            // 
+            this.rtbAdd.BackColor = System.Drawing.SystemColors.Window;
+            this.rtbAdd.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbAdd.Cursor = System.Windows.Forms.Cursors.Default;
+            this.rtbAdd.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rtbAdd.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.rtbAdd.Location = new System.Drawing.Point(136, 236);
+            this.rtbAdd.Name = "rtbAdd";
+            this.rtbAdd.Size = new System.Drawing.Size(586, 32);
+            this.rtbAdd.TabIndex = 9;
+            this.rtbAdd.Text = "";
+            this.rtbAdd.Visible = false;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnAdd.Location = new System.Drawing.Point(732, 236);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(77, 32);
+            this.btnAdd.TabIndex = 10;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // Note
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(821, 882);
+            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.rtbAdd);
             this.Controls.Add(this.rtbNote);
             this.Controls.Add(this.lblTag);
             this.Controls.Add(this.lblDate);
@@ -148,5 +175,7 @@
         private System.Windows.Forms.RichTextBox lblDate;
         private System.Windows.Forms.RichTextBox lblTag;
         private System.Windows.Forms.RichTextBox rtbNote;
+        private System.Windows.Forms.RichTextBox rtbAdd;
+        private System.Windows.Forms.Button btnAdd;
     }
 }
