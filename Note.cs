@@ -1,20 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 
 namespace personal_note
 {
     public partial class Note : Form
     {
-        bool isTitleEmpty = true,isTagEmpty = true,isNoteEmpty = true;
+        bool isTitleEmpty = true, isTagEmpty = true, isNoteEmpty = true;
         DiaryNode diaryNode;
         public Note(int year, int month, int day)
         {
@@ -26,7 +17,7 @@ namespace personal_note
         {
             if (isTitleEmpty) rtbTitle.Text = "";
             isTitleEmpty = false;
-            if (e.KeyCode == Keys.Back && rtbTitle.Text.Length <= 1) 
+            if (e.KeyCode == Keys.Back && rtbTitle.Text.Length <= 1)
             {
                 isTitleEmpty = true;
                 rtbTitle.Text = "Title";
@@ -35,9 +26,9 @@ namespace personal_note
 
         private void Note_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult result = MessageBox.Show("是否存儲內容?","儲存",MessageBoxButtons.YesNoCancel,MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("是否存儲內容?", "儲存", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
-            if (result == DialogResult.Yes) 
+            if (result == DialogResult.Yes)
             {
                 Console.WriteLine("要儲存");
                 Form1.root.AddDiary(diaryNode);
@@ -51,7 +42,7 @@ namespace personal_note
             }
         }
 
-        
+
 
         private void rtbTitle_TextChanged(object sender, EventArgs e)
         {

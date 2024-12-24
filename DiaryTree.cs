@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.IO;
 
@@ -13,17 +9,17 @@ namespace personal_note
 {
     internal class DiaryTreeNode
     {
-        int year,month,day;
+        int year, month, day;
         List<DiaryNode> nodes;
         DiaryTreeNode sibling;
         DiaryTreeNode child;
 
-        public DiaryTreeNode(int year,int month,int day) 
+        public DiaryTreeNode(int year, int month, int day)
         {
             this.year = year;
             this.month = month;
             this.day = day;
-            this.nodes = new List<DiaryNode>(); 
+            this.nodes = new List<DiaryNode>();
             this.sibling = null;
             this.child = null;
         }
@@ -49,12 +45,12 @@ namespace personal_note
             Console.WriteLine($"新增成功: {diaryNode.year}年{diaryNode.month}月{diaryNode.day} \n");
         }
 
-        public DiaryTreeNode searchYear(int year,DiaryTreeNode DiaryTreeNode)
+        public DiaryTreeNode searchYear(int year, DiaryTreeNode DiaryTreeNode)
         {
             DiaryTreeNode copTree = null;  //第一次一定是root，所以不會發生空指標
-            while(DiaryTreeNode!= null)
+            while (DiaryTreeNode != null)
             {
-                if(DiaryTreeNode.year == year)
+                if (DiaryTreeNode.year == year)
                 {
                     return DiaryTreeNode;
                 }
@@ -62,7 +58,7 @@ namespace personal_note
                 DiaryTreeNode = DiaryTreeNode.sibling;
             }
 
-            DiaryTreeNode DiaryTreeNode1 = new DiaryTreeNode(year,-1,-1);
+            DiaryTreeNode DiaryTreeNode1 = new DiaryTreeNode(year, -1, -1);
             copTree.sibling = DiaryTreeNode1;
             return DiaryTreeNode1;
         }
@@ -70,7 +66,7 @@ namespace personal_note
         public DiaryTreeNode searchMonth(int month, DiaryTreeNode yearNode)
         {
             DiaryTreeNode copTree = yearNode.child;
-            if(copTree == null)                  //代表yearNode的child是null，要新增一個給他
+            if (copTree == null)                  //代表yearNode的child是null，要新增一個給他
             {
                 DiaryTreeNode DiaryTreeNode = new DiaryTreeNode(-1, month, -1);
                 yearNode.child = DiaryTreeNode;
@@ -124,8 +120,8 @@ namespace personal_note
         //限定root使用
         public void DeleteDiary(DiaryNode diaryNode)
         {
-            DiaryNode diaryNode1 = SearchDiary(diaryNode.year,diaryNode.month,diaryNode.day,diaryNode.title);
-            if(diaryNode1 == null)
+            DiaryNode diaryNode1 = SearchDiary(diaryNode.year, diaryNode.month, diaryNode.day, diaryNode.title);
+            if (diaryNode1 == null)
             {
                 Console.WriteLine("找不到");
                 return;
@@ -172,12 +168,12 @@ namespace personal_note
         }
 
         //限定root使用
-        public DiaryNode SearchDiary(int year,int month,int day,string title)
+        public DiaryNode SearchDiary(int year, int month, int day, string title)
         {
             DiaryTreeNode DiaryTreeNode = this;
 
             //尋找年
-            while(DiaryTreeNode != null && DiaryTreeNode.year != year)
+            while (DiaryTreeNode != null && DiaryTreeNode.year != year)
             {
                 DiaryTreeNode = DiaryTreeNode.sibling;
             }
@@ -200,11 +196,11 @@ namespace personal_note
             if (DiaryTreeNode == null) return null;
 
             //尋找符合的title
-            for(int i = 0;i < DiaryTreeNode.nodes.Count(); i++)
+            for (int i = 0; i < DiaryTreeNode.nodes.Count(); i++)
             {
                 if (DiaryTreeNode.nodes[i].title == title) return DiaryTreeNode.nodes[i];
             }
-            
+
 
             return null;
         }

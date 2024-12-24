@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace personal_note
@@ -48,7 +43,7 @@ namespace personal_note
                 rtb.BorderStyle = BorderStyle.Fixed3D;
                 rtb.Font = new Font("Arial", 10);
                 rtb.SelectionAlignment = HorizontalAlignment.Right;
-                
+
                 if (date <= 0)
                 {
                     date = lastMonthDays + date;
@@ -154,7 +149,7 @@ namespace personal_note
 
         private void InitializeDiary()
         {
-            DiaryTreeNode diaryTree = new DiaryTreeNode(2024,12,22);
+            DiaryTreeNode diaryTree = new DiaryTreeNode(2024, 12, 22);
             //diaryTree.LoadDiary();
             //for (int i = 0; i < 35; i++)
             //{
@@ -256,7 +251,7 @@ namespace personal_note
             lastMonthDays = DateTime.DaysInMonth(previousYear, previousMonth);
             currentMonthDays = DateTime.DaysInMonth(year, month);
             Month.Text = $"{year}/{month}";
-            for (int i = 0;i < 35;i++)
+            for (int i = 0; i < 35; i++)
             {
                 dates[i].Clear();
                 int date = i - day + 1;
