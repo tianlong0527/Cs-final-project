@@ -161,6 +161,29 @@ namespace personal_note
         private void richTextBox_DoubleClick(object sender, EventArgs e)
         {
             RichTextBox rtb = sender as RichTextBox;
+            if (rtb.ForeColor == Color.Gray)
+            {
+                if (int.Parse(rtb.Text) < 8)
+                {
+                    month++;
+                    if (month == 13)
+                    {
+                        month = 1;
+                        year++;
+                    }
+                    updateCalendar();
+                }
+                else if (int.Parse(rtb.Text) > 24)
+                {
+                    month--;
+                    if (month == 0)
+                    {
+                        month = 12;
+                        year--;
+                    }
+                    updateCalendar();
+                }
+            }
             Note note = new Note(year, month, int.Parse(rtb.Text));
             note.Show();
         }
