@@ -13,7 +13,7 @@ namespace personal_note
         private Button nextMonth, lastMonth;
         private int year = 2024;
         private int month = 12;
-        private int day = 0;
+        private int monthStartDay = 0;
         private int lastMonthDays, currentMonthDays;
         private static DateTime firstDayOfMonth, now;
         private DayOfWeek firstDayOfWeek;
@@ -33,7 +33,7 @@ namespace personal_note
             // Initialize dates
             for (int i = 0; i < 35; i++)
             {
-                int date = i - day + 1;
+                int date = i - monthStartDay + 1;
                 RichTextBox rtb = new RichTextBox();
                 rtb.Size = new Size(80, 90);
                 rtb.Location = new Point(40 + 80 * (i % 7), 100 + 90 * (i / 7));
@@ -60,7 +60,7 @@ namespace personal_note
                 this.Controls.Add(rtb);
             }
 
-            // Initialize week
+            // Initialize the days of week
             for (int i = 0; i < 7; i++)
             {
                 TextBox tb = new TextBox();
@@ -214,25 +214,25 @@ namespace personal_note
             switch (firstDayOfWeek)
             {
                 case DayOfWeek.Sunday:
-                    day = 0;
+                    monthStartDay = 0;
                     break;
                 case DayOfWeek.Monday:
-                    day = 1;
+                    monthStartDay = 1;
                     break;
                 case DayOfWeek.Tuesday:
-                    day = 2;
+                    monthStartDay = 2;
                     break;
                 case DayOfWeek.Wednesday:
-                    day = 3;
+                    monthStartDay = 3;
                     break;
                 case DayOfWeek.Thursday:
-                    day = 4;
+                    monthStartDay = 4;
                     break;
                 case DayOfWeek.Friday:
-                    day = 5;
+                    monthStartDay = 5;
                     break;
                 case DayOfWeek.Saturday:
-                    day = 6;
+                    monthStartDay = 6;
                     break;
             }
         }
@@ -277,7 +277,7 @@ namespace personal_note
             for (int i = 0; i < 35; i++)
             {
                 dates[i].Clear();
-                int date = i - day + 1;
+                int date = i - monthStartDay + 1;
                 dates[i].ForeColor = Color.White;
                 if (date <= 0)
                 {
@@ -291,6 +291,11 @@ namespace personal_note
                 }
                 dates[i].AppendText(date.ToString());
             }
+        }
+
+        private void buildNoteTitleLabel()
+        {
+
         }
 
     }
