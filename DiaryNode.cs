@@ -27,6 +27,11 @@ namespace personal_note
         public void showDiaryNode()
         {
             Console.WriteLine($"year:{year} month:{month} day:{day}");
+            for (int i = 0; i < tag.Count; i++)
+            {
+                Console.Write( tag[i] + " ");
+            }
+            Console.WriteLine();
             Console.WriteLine(title + "\n" + content);
         }
     }
