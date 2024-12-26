@@ -136,8 +136,11 @@ namespace personal_note
             // Save diary to the file
             string fileName = $"{diaryNode.year}-{diaryNode.month}-{diaryNode.day}-{diaryNode.index}.json";
             StreamWriter sw = File.CreateText($"../../data/{fileName}");
-            JsonSerializer serializer = new JsonSerializer();
-            serializer.Serialize(sw, diaryNode);
+            sw.Write(JsonConvert.SerializeObject(diaryNode, Formatting.None,
+                new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                }));
             sw.Close();
         }
 
