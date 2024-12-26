@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace personal_note
@@ -22,6 +23,14 @@ namespace personal_note
             this.tag = new List<String>();
             title = "嗨";
             content = "嗨嗨";
+            label = new Label()
+            {
+                Size = new Size(70, 20),
+                ForeColor = Color.White,
+                BackColor = Color.DimGray,
+                Font = new Font("微軟正黑體", 9),
+                Text = title
+            };
         }
 
         public void showDiaryNode()

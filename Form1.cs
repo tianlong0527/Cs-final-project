@@ -9,6 +9,7 @@ namespace personal_note
     {
         private List<RichTextBox> dates = new List<RichTextBox>();
         private List<TextBox> week = new List<TextBox>();
+        private List<Label> notesTitle = new List<Label>();
         private Label Month = new Label();
         private Button nextMonth, lastMonth;
         private int year = 2024;
@@ -17,6 +18,8 @@ namespace personal_note
         private int lastMonthDays, currentMonthDays;
         private static DateTime firstDayOfMonth, now;
         private DayOfWeek firstDayOfWeek;
+        private DiaryTreeNode yearNode;
+        private DiaryTreeNode monthNode;
         public Form1()
         {
             InitializeComponent();
@@ -42,6 +45,7 @@ namespace personal_note
                 rtb.BorderStyle = BorderStyle.Fixed3D;
                 rtb.Font = new Font("Arial", 10);
                 rtb.SelectionAlignment = HorizontalAlignment.Right;
+                rtb.Cursor = Cursors.Hand;
 
                 if (date <= 0)
                 {
@@ -55,8 +59,11 @@ namespace personal_note
                 }
                 rtb.AppendText(date.ToString());
                 rtb.ReadOnly = true;
+                rtb.Click += richTextBox_Click;
                 rtb.DoubleClick += richTextBox_DoubleClick;
                 dates.Add(rtb);
+                yearNode = DiaryTree.searchYear(year, DiaryTree.root);
+                monthNode = DiaryTree.searchMonth(month, yearNode);
                 this.Controls.Add(rtb);
             }
 
@@ -102,6 +109,11 @@ namespace personal_note
                 this.Controls.Add(tb);
             }
 
+        }
+
+        private void Rtb_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void InitializeMonth()
@@ -156,6 +168,36 @@ namespace personal_note
             //    string content = diaryTree.SearchDiary(date);
             //    dates[i].Text = content;
             //}
+        }
+
+        private void richTextBox_Click(object sender, EventArgs e)
+        {
+            RichTextBox rtb = sender as RichTextBox;
+            if (rtb.ForeColor == Color.Gray)
+            {
+                if (int.Parse(rtb.Text) < 8)
+                {
+                    month++;
+                    if (month == 13)
+                    {
+                        month = 1;
+                        year++;
+                    }
+                    updateCalendar();
+                }
+                else if (int.Parse(rtb.Text) > 24)
+                {
+                    month--;
+                    if (month == 0)
+                    {
+                        month = 12;
+                        year--;
+                    }
+                    updateCalendar();
+                }
+            }
+
+            showFullLabel(int.Parse(rtb.Text));
         }
 
         private void richTextBox_DoubleClick(object sender, EventArgs e)
@@ -264,6 +306,8 @@ namespace personal_note
         private void updateCalendar()
         {
             setDay();
+            yearNode = DiaryTree.searchYear(year, DiaryTree.root);
+            monthNode = DiaryTree.searchMonth(month, yearNode);
             int previousMonth = month - 1;
             int previousYear = year;
             if (previousMonth == 0)
@@ -291,11 +335,88 @@ namespace personal_note
                 }
                 dates[i].AppendText(date.ToString());
             }
+
+            foreach (Label l in notesTitle)
+            {
+                this.Controls.Remove(l);
+            }
+            notesTitle.Clear();
+            buildNotesTitleLabel();
         }
 
-        private void buildNoteTitleLabel()
+        private void buildNotesTitleLabel()
         {
+            // traverse all the days in the current month and build the labels
+            int date = 1;
+            for (date = 1; date <= currentMonthDays; date++)
+            {
+                int rtbIndex = date + monthStartDay - 1;
+                RichTextBox rtb = dates[rtbIndex];
+                int x = rtb.Location.X + 5;
+                int y = rtb.Location.Y + 20;
+                DiaryTreeNode dayNode = DiaryTree.searchDay(date, monthNode);
+                foreach (DiaryNode diaryNode in dayNode.nodes)
+                {
+                    diaryNode.label.Location = new Point(x, y + diaryNode.index * 20);
+                    diaryNode.label.Tag = diaryNode;
+                    diaryNode.label.Visible = true;
+                    diaryNode.label.Click += label_click;
+                    notesTitle.Add(diaryNode.label);
+                    if (diaryNode.index >= 3)
+                    {
+                        diaryNode.label.Visible = false;
+                    }
+                    this.Controls.Add(diaryNode.label);
+                    diaryNode.label.BringToFront();
+                }
+            }
+        }
 
+        private void label_click(object sender, EventArgs e)
+        {
+            Label label = sender as Label;
+            DiaryNode diaryNode = label.Tag as DiaryNode; // the diaryNode that the label belongs to
+        }
+
+        private void showFullLabel(int date)
+        {
+            resetLabel();
+            DiaryTreeNode dayNode = DiaryTree.searchDay(date, monthNode);
+            // show the labels that are hudden due to lack of space
+            foreach (DiaryNode diaryNode in dayNode.nodes)
+            {
+                diaryNode.label.Visible = true;
+            }
+            // hide the labels below the current day
+            for (int i = date + 7; i < 32; i += 7)
+            {
+                DiaryTreeNode tmp = DiaryTree.searchDay(i, monthNode);
+                foreach (DiaryNode dn in tmp.nodes)
+                {
+                    dn.label.Visible = false;
+                }
+            }
+        }
+
+        private void resetLabel()
+        {
+            // reset the visibility of the labels
+            int date = 1;
+            for (date = 1; date <= currentMonthDays; date++)
+            {
+                DiaryTreeNode dayNode = DiaryTree.searchDay(date, monthNode);
+                foreach (DiaryNode diaryNode in dayNode.nodes)
+                {
+                    if (diaryNode.index >= 3)
+                    {
+                        diaryNode.label.Visible = false;
+                    }
+                    else
+                    {
+                        diaryNode.label.Visible = true;
+                    }
+                }
+            }
         }
 
     }
