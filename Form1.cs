@@ -7,6 +7,8 @@ namespace personal_note
 {
     public partial class Form1 : Form
     {
+        public static Form1 mainForm;
+
         private List<RichTextBox> dates = new List<RichTextBox>();
         private List<TextBox> week = new List<TextBox>();
         private List<Label> notesTitle = new List<Label>();
@@ -22,6 +24,7 @@ namespace personal_note
         private DiaryTreeNode monthNode;
         public Form1()
         {
+            mainForm = this;
             InitializeComponent();
             InitializeCalendar();
             InitializeMonth();
@@ -303,7 +306,7 @@ namespace personal_note
             updateCalendar();
         }
 
-        private void updateCalendar()
+        public void updateCalendar()
         {
             setDay();
             yearNode = DiaryTree.searchYear(year, DiaryTree.root);
