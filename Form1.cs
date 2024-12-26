@@ -344,11 +344,10 @@ namespace personal_note
             buildNotesTitleLabel();
         }
 
-        private void buildNotesTitleLabel()
+        public void buildNotesTitleLabel()
         {
             // traverse all the days in the current month and build the labels
-            int date = 1;
-            for (date = 1; date <= currentMonthDays; date++)
+            for (int date = 1; date <= currentMonthDays; date++)
             {
                 int rtbIndex = date + monthStartDay - 1;
                 RichTextBox rtb = dates[rtbIndex];
@@ -357,6 +356,14 @@ namespace personal_note
                 DiaryTreeNode dayNode = DiaryTree.searchDay(date, monthNode);
                 foreach (DiaryNode diaryNode in dayNode.nodes)
                 {
+                    diaryNode.label = new Label()
+                    {
+                        Size = new Size(70, 20),
+                        ForeColor = Color.White,
+                        BackColor = Color.DimGray,
+                        Font = new Font("微軟正黑體", 9),
+                        Text = diaryNode.title
+                    };
                     diaryNode.label.Location = new Point(x, y + diaryNode.index * 20);
                     diaryNode.label.Tag = diaryNode;
                     diaryNode.label.Visible = true;
@@ -407,11 +414,11 @@ namespace personal_note
                 DiaryTreeNode dayNode = DiaryTree.searchDay(date, monthNode);
                 foreach (DiaryNode diaryNode in dayNode.nodes)
                 {
-                    if (diaryNode.index >= 3)
+                    if (diaryNode.index >= 3 && diaryNode.label != null)
                     {
                         diaryNode.label.Visible = false;
                     }
-                    else
+                    else if (diaryNode.label != null)
                     {
                         diaryNode.label.Visible = true;
                     }

@@ -2,6 +2,7 @@
 using System.Linq;
 using Newtonsoft.Json;
 using System.IO;
+using System.Collections.Generic;
 
 
 namespace personal_note
@@ -136,6 +137,7 @@ namespace personal_note
             // Save diary to the file
             string fileName = $"{diaryNode.year}-{diaryNode.month}-{diaryNode.day}-{diaryNode.index}.json";
             StreamWriter sw = File.CreateText($"../../data/{fileName}");
+            diaryNode.label = null;
             sw.Write(JsonConvert.SerializeObject(diaryNode, Formatting.None,
                 new JsonSerializerSettings()
                 {
@@ -152,12 +154,23 @@ namespace personal_note
             {
                 using (StreamReader sr = File.OpenText(fileName))
                 {
-                    JsonSerializer serializer = new JsonSerializer();
-                    DiaryNode diaryNode = (DiaryNode)serializer.Deserialize(sr, typeof(DiaryNode));
-                    if (diaryNode != null)
+                    string temp = sr.ReadToEnd();
+                    try
                     {
-                        AddDiary(diaryNode);
-                        // TODO: check if the diary is already in the tree
+                        //new JsonSerializerSettings()
+                        //{
+                        //    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        //}
+                        DiaryNode diaryNode = JsonConvert.DeserializeObject<DiaryNode>(temp);
+                        if (diaryNode != null)
+                        {
+                            AddDiary(diaryNode);
+                        }
+                    }
+                    catch (JsonSerializationException ex)
+                    {
+                        // Handle the exception, possibly log it or inform the user
+                        Console.WriteLine($"Error deserializing file {fileName}: {ex.Message}");
                     }
                 }
             }
@@ -197,6 +210,26 @@ namespace personal_note
                 if (DiaryTreeNode.nodes[i].title == title) return DiaryTreeNode.nodes[i];
             }
             return null;
+        }
+
+        public static List<DiaryNode> SearchDiaryTag(string tag, int year, int month, int days)
+        {
+            List<DiaryNode> diaryNodes = new List<DiaryNode>();
+            // TODO: Search diary by tag
+            
+            //DiaryTreeNode DiaryTreeNode = root;
+            //while (DiaryTreeNode != null)
+            //{
+            //    for (int i = 0; i < DiaryTreeNode.nodes.Count(); i++)
+            //    {
+            //        if (DiaryTreeNode.nodes[i].tag.Contains(tag))
+            //        {
+            //            diaryNodes.Add(DiaryTreeNode.nodes[i]);
+            //        }
+            //    }
+            //    DiaryTreeNode = DiaryTreeNode.sibling;
+            //}
+            return diaryNodes;
         }
 
 
