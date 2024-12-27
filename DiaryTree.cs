@@ -223,22 +223,24 @@ namespace personal_note
 
         public static List<DiaryNode> SearchDiaryTag(string tag, int year, int month, int days)
         {
-            List<DiaryNode> diaryNodes = new List<DiaryNode>();
-            // TODO: Search diary by tag
-            
-            //DiaryTreeNode DiaryTreeNode = root;
-            //while (DiaryTreeNode != null)
-            //{
-            //    for (int i = 0; i < DiaryTreeNode.nodes.Count(); i++)
-            //    {
-            //        if (DiaryTreeNode.nodes[i].tag.Contains(tag))
-            //        {
-            //            diaryNodes.Add(DiaryTreeNode.nodes[i]);
-            //        }
-            //    }
-            //    DiaryTreeNode = DiaryTreeNode.sibling;
-            //}
-            return diaryNodes;
+            List<DiaryNode> ret = new List<DiaryNode>();
+
+            for(int i = 1;i <= days;i++)
+            {
+                foreach(DiaryNode node in SearchDiary(year,month,days))
+                {
+                    foreach(string str in node.tag)
+                    {
+                        if(str == tag)
+                        {
+                            ret.Add(node);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return ret;
         }
 
 
