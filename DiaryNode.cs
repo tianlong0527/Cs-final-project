@@ -21,8 +21,8 @@ namespace personal_note
             this.month = month;
             this.day = day;
             this.tag = new List<String>();
-            title = "嗨";
-            content = "嗨嗨";
+            title = "";
+            content = "";
         }
 
         public void showDiaryNode()

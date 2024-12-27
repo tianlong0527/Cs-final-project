@@ -65,7 +65,7 @@
             this.rtbDate.Name = "rtbDate";
             this.rtbDate.Size = new System.Drawing.Size(656, 32);
             this.rtbDate.TabIndex = 4;
-            this.rtbDate.Text = "December 1, 2024";
+            this.rtbDate.Text = "";
             // 
             // rtbTag
             // 

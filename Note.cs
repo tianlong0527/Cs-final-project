@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace personal_note
@@ -11,6 +12,7 @@ namespace personal_note
         {
             InitializeComponent();
             this.diaryNode = new DiaryNode(year, month, day);
+            rtbDate.Text = $"{year}年 {month}月 {day}日";
         }
 
         public Note(DiaryNode diaryNode)
@@ -22,6 +24,7 @@ namespace personal_note
             foreach(string str in diaryNode.tag){
                 rtbTag.Text += str + ", ";
             }
+            rtbDate.Text = $"{diaryNode.year}年 {diaryNode.month}月 {diaryNode.day}日";
         }
 
         private void rtbTitle_KeyDown(object sender, KeyEventArgs e)
