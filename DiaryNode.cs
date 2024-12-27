@@ -5,12 +5,12 @@ using System.Windows.Forms;
 
 namespace personal_note
 {
-    internal class DiaryNode
+    public class DiaryNode
     {
         public int month, day, year;
         public string title;
         public List<String> tag;
-        //bool old;
+        public bool old;
         public string content;
         public Label label;
         public int index;
@@ -21,8 +21,9 @@ namespace personal_note
             this.month = month;
             this.day = day;
             this.tag = new List<String>();
-            title = "嗨";
-            content = "嗨嗨";
+            old = false;
+            title = "";
+            content = "";
         }
 
         public void showDiaryNode()

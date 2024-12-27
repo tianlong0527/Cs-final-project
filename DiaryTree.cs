@@ -114,12 +114,26 @@ namespace personal_note
         //限定root使用
         public static void DeleteDiary(DiaryNode diaryNode)
         {
-            DiaryNode diaryNode1 = SearchDiary(diaryNode.year, diaryNode.month, diaryNode.day, diaryNode.title);
+            List<DiaryNode> diaryNode1s = SearchDiary(diaryNode.year, diaryNode.month, diaryNode.day);
+
+            DiaryNode diaryNode1 = null;
+            if (diaryNode1s == null) return;
+
+            for (int i = 0; i < diaryNode1s.Count(); i++)
+            {
+                if (diaryNode1s[i].title == diaryNode.title)
+                {
+                    diaryNode1 = diaryNode1s[i];
+                    break;
+                }
+            }
+
             if (diaryNode1 == null)
             {
                 Console.WriteLine("找不到");
                 return;
             }
+
             DiaryTreeNode yearNode = searchYear(diaryNode.year, root);
             DiaryTreeNode monthNode = searchMonth(diaryNode.month, yearNode);
             DiaryTreeNode dayNode = searchDay(diaryNode.day, monthNode);
@@ -177,59 +191,56 @@ namespace personal_note
         }
 
         //限定root使用
-        public static DiaryNode SearchDiary(int year, int month, int day, string title)
+        public static List<DiaryNode> SearchDiary(int year, int month, int day)
         {
-            DiaryTreeNode DiaryTreeNode = root;
+            DiaryTreeNode diaryTreeNode = root;
 
             //尋找年
-            while (DiaryTreeNode != null && DiaryTreeNode.year != year)
+            while (diaryTreeNode != null && diaryTreeNode.year != year)
             {
-                DiaryTreeNode = DiaryTreeNode.sibling;
+                diaryTreeNode = diaryTreeNode.sibling;
             }
-            if (DiaryTreeNode == null) return null;
+            if (diaryTreeNode == null) return null;
 
             //尋找月
-            DiaryTreeNode = DiaryTreeNode.child;
-            while (DiaryTreeNode != null && DiaryTreeNode.month != month)
+            diaryTreeNode = diaryTreeNode.child;
+            while (diaryTreeNode != null && diaryTreeNode.month != month)
             {
-                DiaryTreeNode = DiaryTreeNode.sibling;
+                diaryTreeNode = diaryTreeNode.sibling;
             }
-            if (DiaryTreeNode == null) return null;
+            if (diaryTreeNode == null) return null;
 
             //尋找日
-            DiaryTreeNode = DiaryTreeNode.child;
-            while (DiaryTreeNode != null && DiaryTreeNode.day != day)
+            diaryTreeNode = diaryTreeNode.child;
+            while (diaryTreeNode != null && diaryTreeNode.day != day)
             {
-                DiaryTreeNode = DiaryTreeNode.sibling;
+                diaryTreeNode = diaryTreeNode.sibling;
             }
-            if (DiaryTreeNode == null) return null;
+            if (diaryTreeNode == null) return null;
 
-            //尋找符合的title
-            for (int i = 0; i < DiaryTreeNode.nodes.Count(); i++)
-            {
-                if (DiaryTreeNode.nodes[i].title == title) return DiaryTreeNode.nodes[i];
-            }
-            return null;
+            return diaryTreeNode.nodes;
         }
 
         public static List<DiaryNode> SearchDiaryTag(string tag, int year, int month, int days)
         {
-            List<DiaryNode> diaryNodes = new List<DiaryNode>();
-            // TODO: Search diary by tag
-            
-            //DiaryTreeNode DiaryTreeNode = root;
-            //while (DiaryTreeNode != null)
-            //{
-            //    for (int i = 0; i < DiaryTreeNode.nodes.Count(); i++)
-            //    {
-            //        if (DiaryTreeNode.nodes[i].tag.Contains(tag))
-            //        {
-            //            diaryNodes.Add(DiaryTreeNode.nodes[i]);
-            //        }
-            //    }
-            //    DiaryTreeNode = DiaryTreeNode.sibling;
-            //}
-            return diaryNodes;
+            List<DiaryNode> ret = new List<DiaryNode>();
+
+            for(int i = 1;i <= days;i++)
+            {
+                foreach(DiaryNode node in SearchDiary(year,month,days))
+                {
+                    foreach(string str in node.tag)
+                    {
+                        if(str == tag)
+                        {
+                            ret.Add(node);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return ret;
         }
 
 

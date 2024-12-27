@@ -386,6 +386,8 @@ namespace personal_note
         {
             Label label = sender as Label;
             DiaryNode diaryNode = label.Tag as DiaryNode; // the diaryNode that the label belongs to
+            Note note = new Note(diaryNode);
+            note.Show();
         }
 
         private void showFullLabel(int date)
@@ -411,8 +413,7 @@ namespace personal_note
         private void resetLabel()
         {
             // reset the visibility of the labels
-            int date = 1;
-            for (date = 1; date <= currentMonthDays; date++)
+            for (int date = 1; date <= currentMonthDays; date++)
             {
                 DiaryTreeNode dayNode = DiaryTree.searchDay(date, monthNode);
                 foreach (DiaryNode diaryNode in dayNode.nodes)
