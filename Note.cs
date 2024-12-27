@@ -23,6 +23,8 @@ namespace personal_note
             this.diaryNode = diaryNode;
             rtbTitle.Text = diaryNode.title;
             rtbNote.Text = diaryNode.content;
+            isNoteEmpty = false;
+            isTitleEmpty = false;
             foreach(string str in diaryNode.tag){
                 rtbTag.Text += str + ", ";
             }
