@@ -31,6 +31,7 @@ namespace personal_note
             InitializeButton();
             InitializeDiary();
             DiaryTree.BuildTreeFromFiles();
+            updateCalendar();
         }
 
         private void InitializeCalendar()
@@ -111,7 +112,6 @@ namespace personal_note
                 week.Add(tb);
                 this.Controls.Add(tb);
             }
-
         }
 
         private void Rtb_Click(object sender, EventArgs e)
