@@ -386,6 +386,8 @@ namespace personal_note
         {
             Label label = sender as Label;
             DiaryNode diaryNode = label.Tag as DiaryNode; // the diaryNode that the label belongs to
+            Note note = new Note(diaryNode);
+            note.Show();
         }
 
         private void showFullLabel(int date)

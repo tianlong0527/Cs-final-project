@@ -6,11 +6,22 @@ namespace personal_note
     public partial class Note : Form
     {
         bool isTitleEmpty = true, isNoteEmpty = true;
-        DiaryNode diaryNode;
+        internal DiaryNode diaryNode;
         public Note(int year, int month, int day)
         {
             InitializeComponent();
             this.diaryNode = new DiaryNode(year, month, day);
+        }
+
+        public Note(DiaryNode diaryNode)
+        {
+            InitializeComponent();
+            this.diaryNode = diaryNode;
+            rtbTitle.Text = diaryNode.title;
+            rtbNote.Text = diaryNode.content;
+            foreach(string str in diaryNode.tag){
+                rtbTag.Text += str + ", ";
+            }
         }
 
         private void rtbTitle_KeyDown(object sender, KeyEventArgs e)
@@ -42,6 +53,7 @@ namespace personal_note
                 e.Cancel = true;
             }
 
+            Form1.mainForm.updateCalendar();
             //DiaryTree.showTree(DiaryTree.root);
             //Console.WriteLine("結束遍歷");
         }

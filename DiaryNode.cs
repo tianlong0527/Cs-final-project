@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace personal_note
 {
-    internal class DiaryNode
+    public class DiaryNode
     {
         public int month, day, year;
         public string title;
