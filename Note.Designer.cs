@@ -45,7 +45,7 @@
             this.rtbTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbTitle.Cursor = System.Windows.Forms.Cursors.Default;
             this.rtbTitle.Font = new System.Drawing.Font("新細明體", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rtbTitle.ForeColor = System.Drawing.SystemColors.Window;
+            this.rtbTitle.ForeColor = System.Drawing.Color.Gray;
             this.rtbTitle.Location = new System.Drawing.Point(54, 69);
             this.rtbTitle.Name = "rtbTitle";
             this.rtbTitle.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
@@ -111,7 +111,7 @@
             this.rtbNote.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbNote.Cursor = System.Windows.Forms.Cursors.Default;
             this.rtbNote.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rtbNote.ForeColor = System.Drawing.SystemColors.Window;
+            this.rtbNote.ForeColor = System.Drawing.Color.Gray;
             this.rtbNote.Location = new System.Drawing.Point(46, 299);
             this.rtbNote.Name = "rtbNote";
             this.rtbNote.Size = new System.Drawing.Size(745, 555);
