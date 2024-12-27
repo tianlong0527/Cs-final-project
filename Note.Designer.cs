@@ -116,7 +116,7 @@
             this.rtbNote.Name = "rtbNote";
             this.rtbNote.Size = new System.Drawing.Size(745, 555);
             this.rtbNote.TabIndex = 8;
-            this.rtbNote.Text = "Let\'s write note";
+            this.rtbNote.Text = "早安，平安健康";
             this.rtbNote.TextChanged += new System.EventHandler(this.rtbNote_TextChanged);
             this.rtbNote.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox1_KeyDown);
             // 

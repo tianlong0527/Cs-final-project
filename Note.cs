@@ -10,6 +10,8 @@ namespace personal_note
         bool isTitleEmpty = true, isNoteEmpty = true,isStore = true;
         internal DiaryNode diaryNode;
         List<string> list = new List<string>();
+
+        List<string> quesion = new List<string>{ "哈哈","測試","嗨嗨" };
         public Note(int year, int month, int day)
         {
             InitializeComponent();
@@ -109,8 +111,9 @@ namespace personal_note
             rtbNote.ForeColor = Color.White;
             if (e.KeyCode == Keys.Back && rtbNote.Text.Length <= 1)
             {
+                Random random = new Random();
                 isNoteEmpty = true;
-                rtbNote.Text = "Let's write note";
+                rtbNote.Text = quesion[random.Next(0, quesion.Count)];
                 rtbNote.ForeColor = Color.Gray;
             }
         }
