@@ -49,7 +49,7 @@ namespace personal_note
                 rtb.BorderStyle = BorderStyle.Fixed3D;
                 rtb.Font = new Font("Arial", 10);
                 rtb.SelectionAlignment = HorizontalAlignment.Right;
-                rtb.Cursor = Cursors.Hand;
+                rtb.Cursor = Cursors.Arrow;
 
                 if (date <= 0)
                 {
@@ -141,7 +141,8 @@ namespace personal_note
                 BackColor = Color.Black,
                 ForeColor = Color.White,
                 Font = new Font("標楷體", 8),
-                FlatStyle = FlatStyle.Flat
+                FlatStyle = FlatStyle.Flat,
+                Cursor = Cursors.Hand
             };
             nextMonth.Click += nextMonth_Click;
 
@@ -153,7 +154,8 @@ namespace personal_note
                 BackColor = Color.Black,
                 ForeColor = Color.White,
                 Font = new Font("標楷體", 8),
-                FlatStyle = FlatStyle.Flat
+                FlatStyle = FlatStyle.Flat,
+                Cursor = Cursors.Hand
             };
             lastMonth.Click += lastMonth_Click;
 
@@ -365,7 +367,8 @@ namespace personal_note
                         ForeColor = Color.White,
                         BackColor = Color.DimGray,
                         Font = new Font("微軟正黑體", 9),
-                        Text = diaryNode.title
+                        Text = diaryNode.title,
+                        Cursor = Cursors.Hand
                     };
                     diaryNode.label.Location = new Point(x, y + diaryNode.index * 22);
                     diaryNode.label.Tag = diaryNode;
