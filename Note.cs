@@ -22,7 +22,9 @@ namespace personal_note
             InitializeComponent();
             this.diaryNode = diaryNode;
             rtbTitle.Text = diaryNode.title;
+            rtbTitle.ForeColor = Color.White;
             rtbNote.Text = diaryNode.content;
+            rtbNote.ForeColor = Color.White;
             isNoteEmpty = false;
             isTitleEmpty = false;
             foreach(string str in diaryNode.tag){
@@ -35,10 +37,12 @@ namespace personal_note
         {
             if (isTitleEmpty) rtbTitle.Text = "";
             isTitleEmpty = false;
+            rtbTitle.ForeColor = Color.White;
             if (e.KeyCode == Keys.Back && rtbTitle.Text.Length <= 1)
             {
                 isTitleEmpty = true;
                 rtbTitle.Text = "Title";
+                rtbTitle.ForeColor = Color.Gray;
             }
         }
 
@@ -102,10 +106,12 @@ namespace personal_note
         {
             if (isNoteEmpty) rtbNote.Text = "";
             isNoteEmpty = false;
+            rtbNote.ForeColor = Color.White;
             if (e.KeyCode == Keys.Back && rtbNote.Text.Length <= 1)
             {
                 isNoteEmpty = true;
                 rtbNote.Text = "Let's write note";
+                rtbNote.ForeColor = Color.Gray;
             }
         }
 
