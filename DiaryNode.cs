@@ -10,7 +10,7 @@ namespace personal_note
         public int month, day, year;
         public string title;
         public List<String> tag;
-        //bool old;
+        public bool old;
         public string content;
         public Label label;
         public int index;
@@ -21,6 +21,7 @@ namespace personal_note
             this.month = month;
             this.day = day;
             this.tag = new List<String>();
+            old = false;
             title = "";
             content = "";
         }
