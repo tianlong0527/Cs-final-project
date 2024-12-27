@@ -14,6 +14,7 @@ namespace personal_note
         public string content;
         public Label label;
         public int index;
+        public int star;
 
         public DiaryNode(int year, int month, int day)
         {
@@ -22,6 +23,7 @@ namespace personal_note
             this.day = day;
             this.tag = new List<String>();
             old = false;
+            star = 1;
             title = "";
             content = "";
         }
