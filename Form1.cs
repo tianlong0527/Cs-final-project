@@ -367,7 +367,7 @@ namespace personal_note
                         Font = new Font("微軟正黑體", 9),
                         Text = diaryNode.title
                     };
-                    diaryNode.label.Location = new Point(x, y + diaryNode.index * 20);
+                    diaryNode.label.Location = new Point(x, y + diaryNode.index * 22);
                     diaryNode.label.Tag = diaryNode;
                     diaryNode.label.Visible = true;
                     diaryNode.label.Click += label_click;
