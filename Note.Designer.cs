@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Note));
             this.rtbTitle = new System.Windows.Forms.RichTextBox();
             this.rtbDate = new System.Windows.Forms.RichTextBox();
             this.rtbTag = new System.Windows.Forms.RichTextBox();
@@ -36,6 +37,16 @@
             this.rtbNote = new System.Windows.Forms.RichTextBox();
             this.rtbAdd = new System.Windows.Forms.RichTextBox();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.pBox1 = new System.Windows.Forms.PictureBox();
+            this.pBox2 = new System.Windows.Forms.PictureBox();
+            this.pBox3 = new System.Windows.Forms.PictureBox();
+            this.pBox4 = new System.Windows.Forms.PictureBox();
+            this.pBox5 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // rtbTitle
@@ -116,7 +127,7 @@
             this.rtbNote.Name = "rtbNote";
             this.rtbNote.Size = new System.Drawing.Size(745, 555);
             this.rtbNote.TabIndex = 8;
-            this.rtbNote.Text = "Let\'s write note";
+            this.rtbNote.Text = "早安，平安健康";
             this.rtbNote.TextChanged += new System.EventHandler(this.rtbNote_TextChanged);
             this.rtbNote.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox1_KeyDown);
             // 
@@ -145,12 +156,72 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // pBox1
+            // 
+            this.pBox1.Image = ((System.Drawing.Image)(resources.GetObject("pBox1.Image")));
+            this.pBox1.Location = new System.Drawing.Point(531, 6);
+            this.pBox1.Name = "pBox1";
+            this.pBox1.Size = new System.Drawing.Size(61, 57);
+            this.pBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pBox1.TabIndex = 11;
+            this.pBox1.TabStop = false;
+            this.pBox1.Click += new System.EventHandler(this.pBox_Click);
+            // 
+            // pBox2
+            // 
+            this.pBox2.Image = ((System.Drawing.Image)(resources.GetObject("pBox2.Image")));
+            this.pBox2.Location = new System.Drawing.Point(589, 6);
+            this.pBox2.Name = "pBox2";
+            this.pBox2.Size = new System.Drawing.Size(61, 57);
+            this.pBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pBox2.TabIndex = 12;
+            this.pBox2.TabStop = false;
+            this.pBox2.Click += new System.EventHandler(this.pBox_Click);
+            // 
+            // pBox3
+            // 
+            this.pBox3.Image = ((System.Drawing.Image)(resources.GetObject("pBox3.Image")));
+            this.pBox3.Location = new System.Drawing.Point(647, 6);
+            this.pBox3.Name = "pBox3";
+            this.pBox3.Size = new System.Drawing.Size(61, 57);
+            this.pBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pBox3.TabIndex = 13;
+            this.pBox3.TabStop = false;
+            this.pBox3.Click += new System.EventHandler(this.pBox_Click);
+            // 
+            // pBox4
+            // 
+            this.pBox4.Image = ((System.Drawing.Image)(resources.GetObject("pBox4.Image")));
+            this.pBox4.Location = new System.Drawing.Point(705, 6);
+            this.pBox4.Name = "pBox4";
+            this.pBox4.Size = new System.Drawing.Size(61, 57);
+            this.pBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pBox4.TabIndex = 14;
+            this.pBox4.TabStop = false;
+            this.pBox4.Click += new System.EventHandler(this.pBox_Click);
+            // 
+            // pBox5
+            // 
+            this.pBox5.Image = ((System.Drawing.Image)(resources.GetObject("pBox5.Image")));
+            this.pBox5.Location = new System.Drawing.Point(762, 6);
+            this.pBox5.Name = "pBox5";
+            this.pBox5.Size = new System.Drawing.Size(61, 57);
+            this.pBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pBox5.TabIndex = 15;
+            this.pBox5.TabStop = false;
+            this.pBox5.Click += new System.EventHandler(this.pBox_Click);
+            // 
             // Note
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(821, 882);
+            this.Controls.Add(this.pBox5);
+            this.Controls.Add(this.pBox4);
+            this.Controls.Add(this.pBox3);
+            this.Controls.Add(this.pBox2);
+            this.Controls.Add(this.pBox1);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.rtbAdd);
             this.Controls.Add(this.rtbNote);
@@ -163,6 +234,11 @@
             this.Name = "Note";
             this.Text = "Note";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Note_FormClosing);
+            ((System.ComponentModel.ISupportInitialize)(this.pBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBox5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -177,5 +253,10 @@
         private System.Windows.Forms.RichTextBox rtbNote;
         private System.Windows.Forms.RichTextBox rtbAdd;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.PictureBox pBox1;
+        private System.Windows.Forms.PictureBox pBox2;
+        private System.Windows.Forms.PictureBox pBox3;
+        private System.Windows.Forms.PictureBox pBox4;
+        private System.Windows.Forms.PictureBox pBox5;
     }
 }

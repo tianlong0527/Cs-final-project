@@ -8,19 +8,27 @@ namespace personal_note
     public partial class Note : Form
     {
         bool isTitleEmpty = true, isNoteEmpty = true,isStore = true;
+        int storeStar;
         internal DiaryNode diaryNode;
         List<string> list = new List<string>();
+        List<PictureBox> pictureBoxes = new List<PictureBox>();
+
+        List<string> quesion = new List<string>{ "哈哈","測試","嗨嗨" };
         public Note(int year, int month, int day)
         {
             InitializeComponent();
+            InitialPBox();
             this.diaryNode = new DiaryNode(year, month, day);
+            storeStar = diaryNode.star;
             rtbDate.Text = $"{year}年 {month}月 {day}日";
         }
 
         public Note(DiaryNode diaryNode)
         {
             InitializeComponent();
+            InitialPBox();
             this.diaryNode = diaryNode;
+            showStar(diaryNode.star - 1);
             rtbTitle.Text = diaryNode.title;
             rtbTitle.ForeColor = Color.White;
             rtbNote.Text = diaryNode.content;
@@ -33,6 +41,14 @@ namespace personal_note
             rtbDate.Text = $"{diaryNode.year}年 {diaryNode.month}月 {diaryNode.day}日";
         }
 
+        private void InitialPBox()
+        {
+            pictureBoxes.Add(pBox1);
+            pictureBoxes.Add(pBox2);
+            pictureBoxes.Add(pBox3);
+            pictureBoxes.Add(pBox4);
+            pictureBoxes.Add(pBox5);
+        }
         private void rtbTitle_KeyDown(object sender, KeyEventArgs e)
         {
             if (isTitleEmpty) rtbTitle.Text = "";
@@ -109,9 +125,39 @@ namespace personal_note
             rtbNote.ForeColor = Color.White;
             if (e.KeyCode == Keys.Back && rtbNote.Text.Length <= 1)
             {
+                Random random = new Random();
                 isNoteEmpty = true;
-                rtbNote.Text = "Let's write note";
+                rtbNote.Text = quesion[random.Next(0, quesion.Count)];
                 rtbNote.ForeColor = Color.Gray;
+            }
+        }
+
+        private void pBox_Click(object sender, EventArgs e)
+        {
+            for(int i = 0;i < 5;i++)
+            {
+                if ((PictureBox)sender == pictureBoxes[i])
+                {
+                    showStar(i);
+                    break;  
+                }
+            }
+        }
+
+        private void showStar(int num)
+        {
+            if (diaryNode.star != num + 1) isStore = false;
+            storeStar = num + 1;
+            int i = 0;
+            for (; i <= num; i++)
+            {
+                pictureBoxes[i].Image = Image.FromFile("../../Image/yellowStar.png");
+            }
+            //i++;
+
+            for (; i < 5; i++)
+            {
+                pictureBoxes[i].Image = Image.FromFile("../../Image/star.png");
             }
         }
 
@@ -134,6 +180,7 @@ namespace personal_note
         {
             diaryNode.title = rtbTitle.Text;
             diaryNode.content = rtbNote.Text;
+            diaryNode.star = storeStar;
             foreach(string str in list)
             {
                 diaryNode.tag.Add(str);
