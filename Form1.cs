@@ -18,10 +18,14 @@ namespace personal_note
         private int month = 12;
         private int monthStartDay = 0;
         private int lastMonthDays, currentMonthDays;
+        private int hourForDiary = 4;
+        private int minuteForDiary = 7;
+        private int secondForDiary = 0;
         private static DateTime firstDayOfMonth, now;
         private DayOfWeek firstDayOfWeek;
         private DiaryTreeNode yearNode;
         private DiaryTreeNode monthNode;
+        private Timer detect;
         public Form1()
         {
             mainForm = this;
@@ -30,8 +34,10 @@ namespace personal_note
             InitializeMonth();
             InitializeButton();
             InitializeDiary();
+            InitializeTimer();
             DiaryTree.BuildTreeFromFiles();
             updateCalendar();
+            detect.Start();
         }
 
         private void InitializeCalendar()
@@ -175,6 +181,14 @@ namespace personal_note
             //}
         }
 
+        private void InitializeTimer()
+        {
+            detect = new Timer();
+            detect.Interval = 1000;
+            detect.Tick += new EventHandler(detect_Tick);
+            detect.Start();
+        }
+
         private void richTextBox_Click(object sender, EventArgs e)
         {
             RichTextBox rtb = sender as RichTextBox;
@@ -233,6 +247,15 @@ namespace personal_note
             }
             Note note = new Note(year, month, int.Parse(rtb.Text));
             note.Show();
+        }
+
+        private void detect_Tick(object sender, EventArgs e)
+        {
+            DateTime now = DateTime.Now;
+            if (now.Hour == hourForDiary && now.Minute == minuteForDiary && now.Second == secondForDiary)
+            {
+                MessageBox.Show("It's time to write diary!");
+            }
         }
 
         private void setCurrent()
