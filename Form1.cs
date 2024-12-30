@@ -44,7 +44,7 @@ namespace personal_note
         {
             setCurrent();
             // Initialize dates
-            for (int i = 0; i < 35; i++)
+            for (int i = 0; i < 42; i++)
             {
                 int date = i - monthStartDay + 1;
                 RichTextBox rtb = new RichTextBox();
@@ -346,7 +346,7 @@ namespace personal_note
             lastMonthDays = DateTime.DaysInMonth(previousYear, previousMonth);
             currentMonthDays = DateTime.DaysInMonth(year, month);
             Month.Text = $"{year}/{month}";
-            for (int i = 0; i < 35; i++)
+            for (int i = 0; i < 42; i++)
             {
                 dates[i].Clear();
                 int date = i - monthStartDay + 1;
@@ -378,6 +378,7 @@ namespace personal_note
             for (int date = 1; date <= currentMonthDays; date++)
             {
                 int rtbIndex = date + monthStartDay - 1;
+                Console.WriteLine(rtbIndex);
                 RichTextBox rtb = dates[rtbIndex];
                 int x = rtb.Location.X + 5;
                 int y = rtb.Location.Y + 20;
