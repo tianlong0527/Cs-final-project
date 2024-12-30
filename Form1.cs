@@ -18,10 +18,14 @@ namespace personal_note
         private int month = 12;
         private int monthStartDay = 0;
         private int lastMonthDays, currentMonthDays;
+        private int hourForDiary = 4;
+        private int minuteForDiary = 7;
+        private int secondForDiary = 0;
         private static DateTime firstDayOfMonth, now;
         private DayOfWeek firstDayOfWeek;
         private DiaryTreeNode yearNode;
         private DiaryTreeNode monthNode;
+        private Timer detect;
         public Form1()
         {
             mainForm = this;
@@ -30,7 +34,10 @@ namespace personal_note
             InitializeMonth();
             InitializeButton();
             InitializeDiary();
+            InitializeTimer();
             DiaryTree.BuildTreeFromFiles();
+            updateCalendar();
+            detect.Start();
         }
 
         private void InitializeCalendar()
@@ -48,7 +55,7 @@ namespace personal_note
                 rtb.BorderStyle = BorderStyle.Fixed3D;
                 rtb.Font = new Font("Arial", 10);
                 rtb.SelectionAlignment = HorizontalAlignment.Right;
-                rtb.Cursor = Cursors.Hand;
+                rtb.Cursor = Cursors.Arrow;
 
                 if (date <= 0)
                 {
@@ -111,7 +118,6 @@ namespace personal_note
                 week.Add(tb);
                 this.Controls.Add(tb);
             }
-
         }
 
         private void Rtb_Click(object sender, EventArgs e)
@@ -141,7 +147,8 @@ namespace personal_note
                 BackColor = Color.Black,
                 ForeColor = Color.White,
                 Font = new Font("標楷體", 8),
-                FlatStyle = FlatStyle.Flat
+                FlatStyle = FlatStyle.Flat,
+                Cursor = Cursors.Hand
             };
             nextMonth.Click += nextMonth_Click;
 
@@ -153,7 +160,8 @@ namespace personal_note
                 BackColor = Color.Black,
                 ForeColor = Color.White,
                 Font = new Font("標楷體", 8),
-                FlatStyle = FlatStyle.Flat
+                FlatStyle = FlatStyle.Flat,
+                Cursor = Cursors.Hand
             };
             lastMonth.Click += lastMonth_Click;
 
@@ -171,6 +179,14 @@ namespace personal_note
             //    string content = diaryTree.SearchDiary(date);
             //    dates[i].Text = content;
             //}
+        }
+
+        private void InitializeTimer()
+        {
+            detect = new Timer();
+            detect.Interval = 1000;
+            detect.Tick += new EventHandler(detect_Tick);
+            detect.Start();
         }
 
         private void richTextBox_Click(object sender, EventArgs e)
@@ -231,6 +247,15 @@ namespace personal_note
             }
             Note note = new Note(year, month, int.Parse(rtb.Text));
             note.Show();
+        }
+
+        private void detect_Tick(object sender, EventArgs e)
+        {
+            DateTime now = DateTime.Now;
+            if (now.Hour == hourForDiary && now.Minute == minuteForDiary && now.Second == secondForDiary)
+            {
+                MessageBox.Show("It's time to write diary!");
+            }
         }
 
         private void setCurrent()
@@ -365,9 +390,10 @@ namespace personal_note
                         ForeColor = Color.White,
                         BackColor = Color.DimGray,
                         Font = new Font("微軟正黑體", 9),
-                        Text = diaryNode.title
+                        Text = diaryNode.title,
+                        Cursor = Cursors.Hand
                     };
-                    diaryNode.label.Location = new Point(x, y + diaryNode.index * 20);
+                    diaryNode.label.Location = new Point(x, y + diaryNode.index * 22);
                     diaryNode.label.Tag = diaryNode;
                     diaryNode.label.Visible = true;
                     diaryNode.label.Click += label_click;
