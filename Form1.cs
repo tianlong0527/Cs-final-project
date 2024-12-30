@@ -8,6 +8,10 @@ namespace personal_note
     public partial class Form1 : Form
     {
         public static Form1 mainForm;
+        public Color colorBackGround = Color.Black;
+        public Color colorText = Color.White;
+        //public Color colorBorder = Color.White;
+        public Color colorLabel = Color.DimGray;
 
         private List<RichTextBox> dates = new List<RichTextBox>();
         private List<TextBox> week = new List<TextBox>();
@@ -50,8 +54,8 @@ namespace personal_note
                 RichTextBox rtb = new RichTextBox();
                 rtb.Size = new Size(80, 90);
                 rtb.Location = new Point(40 + 80 * (i % 7), 100 + 90 * (i / 7));
-                rtb.BackColor = Color.Black;
-                rtb.ForeColor = Color.White;
+                rtb.BackColor = colorBackGround;
+                rtb.ForeColor = colorText;
                 rtb.BorderStyle = BorderStyle.Fixed3D;
                 rtb.Font = new Font("Arial", 10);
                 rtb.SelectionAlignment = HorizontalAlignment.Right;
@@ -84,8 +88,8 @@ namespace personal_note
                 tb.Size = new Size(80, 30);
                 tb.Font = new Font("微軟正黑體", 10);
                 tb.Location = new Point(40 + 80 * i, 78);
-                tb.BackColor = Color.Black;
-                tb.ForeColor = Color.White;
+                tb.BackColor = colorBackGround;
+                tb.ForeColor = colorText;
                 tb.BorderStyle = BorderStyle.FixedSingle;
                 tb.TextAlign = HorizontalAlignment.Center;
                 switch (i)
@@ -130,7 +134,7 @@ namespace personal_note
             // Initialize Month
             Month.Location = new Point(480, 59);
             Month.Size = new Size(58, 12);
-            Month.ForeColor = Color.White;
+            Month.ForeColor = colorText;
             Month.Font = new Font("標楷體", 10);
             Month.Text = $"{year}/{month}";
             this.Controls.Add(Month);
@@ -144,8 +148,8 @@ namespace personal_note
                 Location = new Point(538, 56),
                 Size = new Size(20, 20),
                 Text = ">",
-                BackColor = Color.Black,
-                ForeColor = Color.White,
+                BackColor = colorBackGround,
+                ForeColor = colorText,
                 Font = new Font("標楷體", 8),
                 FlatStyle = FlatStyle.Flat,
                 Cursor = Cursors.Hand
@@ -157,8 +161,8 @@ namespace personal_note
                 Location = new Point(458, 56),
                 Size = new Size(20, 20),
                 Text = "<",
-                BackColor = Color.Black,
-                ForeColor = Color.White,
+                BackColor = colorBackGround,
+                ForeColor = colorText,
                 Font = new Font("標楷體", 8),
                 FlatStyle = FlatStyle.Flat,
                 Cursor = Cursors.Hand
@@ -350,7 +354,7 @@ namespace personal_note
             {
                 dates[i].Clear();
                 int date = i - monthStartDay + 1;
-                dates[i].ForeColor = Color.White;
+                dates[i].ForeColor = colorText;
                 if (date <= 0)
                 {
                     date = lastMonthDays + date;
@@ -378,7 +382,7 @@ namespace personal_note
             for (int date = 1; date <= currentMonthDays; date++)
             {
                 int rtbIndex = date + monthStartDay - 1;
-                Console.WriteLine(rtbIndex);
+                //Console.WriteLine(rtbIndex);
                 RichTextBox rtb = dates[rtbIndex];
                 int x = rtb.Location.X + 5;
                 int y = rtb.Location.Y + 20;
@@ -388,8 +392,8 @@ namespace personal_note
                     diaryNode.label = new Label()
                     {
                         Size = new Size(70, 20),
-                        ForeColor = Color.White,
-                        BackColor = Color.DimGray,
+                        ForeColor = colorText,
+                        BackColor = colorLabel,
                         Font = new Font("微軟正黑體", 9),
                         Text = diaryNode.title,
                         Cursor = Cursors.Hand
