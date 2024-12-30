@@ -51,6 +51,12 @@ namespace personal_note
         }
         private void rtbTitle_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // 禁止 Enter 键的输入
+                e.Handled = true;          // 防止其他事件触发
+            }
+
             if (isTitleEmpty) rtbTitle.Text = "";
             isTitleEmpty = false;
             rtbTitle.ForeColor = Color.White;
@@ -160,6 +166,7 @@ namespace personal_note
                 pictureBoxes[i].Image = Image.FromFile("../../Image/star.png");
             }
         }
+
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
