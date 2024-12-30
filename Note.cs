@@ -13,7 +13,11 @@ namespace personal_note
         List<string> list = new List<string>();
         List<PictureBox> pictureBoxes = new List<PictureBox>();
 
-        List<string> quesion = new List<string>{ "哈哈","測試","嗨嗨" };
+        List<string> quesion = new List<string>{ "早安，平安健康", "打麻將時，湊齊Pi就胡牌了!",
+            "為什麼日本雞蛋喜歡一粒一粒?\n因為他們不喜歡盒蛋" ,"為什麼美國要在日本投下原子彈?\n因為他們有招核天皇",
+            "料理鼠王把他畢生的研究成果紀錄在一本書上，那本書叫做鼠王筆記本","白冰冰確診會變什麼?\n自冰冰",
+            "為什麼多啦A夢和大雄知道二戰日本會輸\n因為他們是胖子與小男孩","期末加油!",
+            "皮卡丘跳遠\n皮卡乒乓乒乓乒乓丘丘丘丘兵","有一天我幫我家的貓換比較細的貓砂\n結果牠很不爽的跟我說：這沙小"};
         public Note(int year, int month, int day)
         {
             InitializeComponent();
@@ -21,6 +25,8 @@ namespace personal_note
             this.diaryNode = new DiaryNode(year, month, day);
             storeStar = diaryNode.star;
             rtbDate.Text = $"{year}年 {month}月 {day}日";
+            Random random = new Random();
+            rtbNote.Text = quesion[random.Next(0, quesion.Count)];
         }
 
         public Note(DiaryNode diaryNode)
