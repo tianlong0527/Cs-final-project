@@ -36,7 +36,7 @@ namespace personal_note
             isNoteEmpty = false;
             isTitleEmpty = false;
             foreach(string str in diaryNode.tag){
-                rtbTag.Text += str + ", ";
+                lblTagText.Text += str + " ";
             }
             rtbDate.Text = $"{diaryNode.year}年 {diaryNode.month}月 {diaryNode.day}日";
         }
@@ -98,13 +98,13 @@ namespace personal_note
             if(btnAdd.Text.Equals("Add"))
             {
                 rtbAdd.Visible = true;
-                rtbTag.Visible = false;
+                lblTagText.Visible = false;
                 btnAdd.Text = "Ensure";
             }else if (btnAdd.Text.Equals("Ensure"))
             {
                 isStore = false;
-                rtbTag.Text += rtbAdd.Text + ", ";
-                rtbTag.Visible = true;
+                lblTagText.Text += rtbAdd.Text + ", ";
+                lblTagText.Visible = true;
                 rtbAdd.Visible = false;
                 list.Add(rtbAdd.Text);
                 rtbAdd.Text = "";
