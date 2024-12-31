@@ -28,12 +28,8 @@ namespace personal_note
         public static void AddDiary(DiaryNode diaryNode)
         {
             DiaryTreeNode yearNode = searchYear(diaryNode.year, root);
-            //Console.WriteLine($"add {yearNode.year}/{yearNode.month}/{yearNode.day}\n");
             DiaryTreeNode monthNode = searchMonth(diaryNode.month, yearNode);
-            //Console.WriteLine(yearNode.child == monthNode);
-            //Console.WriteLine($"add {monthNode.year}/{monthNode.month}/{monthNode.day}\n");
             DiaryTreeNode dayNode = searchDay(diaryNode.day, monthNode);
-            //Console.WriteLine($"add {dayNode.year}/{dayNode.month}/{dayNode.day}\n");
             dayNode.nodes.Add(diaryNode);
             diaryNode.index = dayNode.nodes.Count() - 1;
             Console.WriteLine($"新增成功: {diaryNode.year}年{diaryNode.month}月{diaryNode.day} \n");
