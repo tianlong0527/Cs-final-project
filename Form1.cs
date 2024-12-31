@@ -18,8 +18,8 @@ namespace personal_note
         private int month = 12;
         private int monthStartDay = 0;
         private int lastMonthDays, currentMonthDays;
-        private int hourForDiary = 4;
-        private int minuteForDiary = 7;
+        private int hourForDiary = 20;
+        private int minuteForDiary = 0;
         private int secondForDiary = 0;
         private static DateTime firstDayOfMonth, now;
         private DayOfWeek firstDayOfWeek;
@@ -119,7 +119,6 @@ namespace personal_note
                 this.Controls.Add(tb);
             }
         }
-
         private void Rtb_Click(object sender, EventArgs e)
         {
             throw new NotImplementedException();
