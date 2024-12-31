@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Note));
             this.rtbTitle = new System.Windows.Forms.RichTextBox();
             this.rtbDate = new System.Windows.Forms.RichTextBox();
-            this.rtbTag = new System.Windows.Forms.RichTextBox();
             this.lblDate = new System.Windows.Forms.RichTextBox();
             this.lblTag = new System.Windows.Forms.RichTextBox();
             this.rtbNote = new System.Windows.Forms.RichTextBox();
@@ -79,19 +78,6 @@
             this.rtbDate.TabIndex = 4;
             this.rtbDate.Text = "";
             // 
-            // rtbTag
-            // 
-            this.rtbTag.BackColor = System.Drawing.SystemColors.WindowText;
-            this.rtbTag.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtbTag.Cursor = System.Windows.Forms.Cursors.Default;
-            this.rtbTag.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rtbTag.ForeColor = System.Drawing.SystemColors.Window;
-            this.rtbTag.Location = new System.Drawing.Point(136, 236);
-            this.rtbTag.Name = "rtbTag";
-            this.rtbTag.Size = new System.Drawing.Size(586, 32);
-            this.rtbTag.TabIndex = 5;
-            this.rtbTag.Text = "";
-            // 
             // lblDate
             // 
             this.lblDate.BackColor = System.Drawing.SystemColors.WindowText;
@@ -124,7 +110,7 @@
             this.rtbNote.Cursor = System.Windows.Forms.Cursors.Default;
             this.rtbNote.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rtbNote.ForeColor = System.Drawing.Color.Gray;
-            this.rtbNote.Location = new System.Drawing.Point(46, 299);
+            this.rtbNote.Location = new System.Drawing.Point(54, 292);
             this.rtbNote.Name = "rtbNote";
             this.rtbNote.Size = new System.Drawing.Size(745, 555);
             this.rtbNote.TabIndex = 8;
@@ -134,17 +120,18 @@
             // 
             // rtbAdd
             // 
-            this.rtbAdd.BackColor = System.Drawing.SystemColors.Window;
+            this.rtbAdd.BackColor = System.Drawing.Color.Gray;
             this.rtbAdd.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbAdd.Cursor = System.Windows.Forms.Cursors.Default;
             this.rtbAdd.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rtbAdd.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.rtbAdd.Location = new System.Drawing.Point(136, 236);
+            this.rtbAdd.Location = new System.Drawing.Point(140, 236);
             this.rtbAdd.Name = "rtbAdd";
             this.rtbAdd.Size = new System.Drawing.Size(586, 32);
             this.rtbAdd.TabIndex = 9;
             this.rtbAdd.Text = "";
             this.rtbAdd.Visible = false;
+            this.rtbAdd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rtbAdd_KeyDown);
             // 
             // btnAdd
             // 
@@ -238,7 +225,6 @@
             this.Controls.Add(this.rtbNote);
             this.Controls.Add(this.lblTag);
             this.Controls.Add(this.lblDate);
-            this.Controls.Add(this.rtbTag);
             this.Controls.Add(this.rtbDate);
             this.Controls.Add(this.rtbTitle);
             this.ForeColor = System.Drawing.SystemColors.Control;
@@ -259,7 +245,6 @@
 
         private System.Windows.Forms.RichTextBox rtbTitle;
         private System.Windows.Forms.RichTextBox rtbDate;
-        private System.Windows.Forms.RichTextBox rtbTag;
         private System.Windows.Forms.RichTextBox lblDate;
         private System.Windows.Forms.RichTextBox lblTag;
         private System.Windows.Forms.RichTextBox rtbNote;

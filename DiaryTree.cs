@@ -239,6 +239,31 @@ namespace personal_note
             return ret;
         }
 
+        public static List<float> get30daysStar(int year,int month,int days)
+        {
+            List<float> ret = new List<float>();
+          
+            for(int i = 0; i < 32; i++)
+            {
+                ret.Add(-1);
+            }
+
+            for(int i = 1; i < days; i++)
+            {
+                int sum = 0,num = 0;
+                foreach(DiaryNode diaryNode in SearchDiary(year,month,i))
+                {
+                    num++;
+                    sum += diaryNode.star;
+                }
+
+                if(num == 0) continue;
+                ret[i] = sum / num;
+            }
+
+            return ret;
+        }
+
 
         public static void showTree(DiaryTreeNode diaryTree)
         {
