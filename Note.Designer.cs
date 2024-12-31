@@ -42,6 +42,7 @@
             this.pBox3 = new System.Windows.Forms.PictureBox();
             this.pBox4 = new System.Windows.Forms.PictureBox();
             this.pBox5 = new System.Windows.Forms.PictureBox();
+            this.lblTagText = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBox3)).BeginInit();
@@ -127,7 +128,7 @@
             this.rtbNote.Name = "rtbNote";
             this.rtbNote.Size = new System.Drawing.Size(745, 555);
             this.rtbNote.TabIndex = 8;
-            this.rtbNote.Text = "早安，平安健康";
+            this.rtbNote.Text = "";
             this.rtbNote.TextChanged += new System.EventHandler(this.rtbNote_TextChanged);
             this.rtbNote.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox1_KeyDown);
             // 
@@ -211,12 +212,22 @@
             this.pBox5.TabStop = false;
             this.pBox5.Click += new System.EventHandler(this.pBox_Click);
             // 
+            // lblTagText
+            // 
+            this.lblTagText.AutoSize = true;
+            this.lblTagText.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblTagText.Location = new System.Drawing.Point(132, 238);
+            this.lblTagText.Name = "lblTagText";
+            this.lblTagText.Size = new System.Drawing.Size(0, 24);
+            this.lblTagText.TabIndex = 16;
+            // 
             // Note
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(821, 882);
+            this.Controls.Add(this.lblTagText);
             this.Controls.Add(this.pBox5);
             this.Controls.Add(this.pBox4);
             this.Controls.Add(this.pBox3);
@@ -240,6 +251,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBox5)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -258,5 +270,6 @@
         private System.Windows.Forms.PictureBox pBox3;
         private System.Windows.Forms.PictureBox pBox4;
         private System.Windows.Forms.PictureBox pBox5;
+        private System.Windows.Forms.Label lblTagText;
     }
 }
