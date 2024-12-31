@@ -145,6 +145,7 @@
             this.rtbAdd.TabIndex = 9;
             this.rtbAdd.Text = "";
             this.rtbAdd.Visible = false;
+            this.rtbAdd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rtbAdd_KeyDown);
             // 
             // btnAdd
             // 
