@@ -245,7 +245,7 @@ namespace personal_note
           
             for(int i = 0; i < 32; i++)
             {
-                ret.Add(-1);
+                ret.Add(0);
             }
 
             for(int i = 1; i < days; i++)
