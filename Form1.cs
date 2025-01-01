@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace personal_note
 {
@@ -458,6 +459,20 @@ namespace personal_note
                     }
                 }
             }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            // 判斷是否按下 Ctrl + G
+            if (keyData == (Keys.Control | Keys.G))
+            {
+                List<int> stars = new List<int>();
+                
+                Graphic graphic = new Graphic(stars);
+                graphic.Show();
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
     }
