@@ -24,6 +24,8 @@ namespace personal_note
             {
                 List<DiaryNode> list = DiaryTree.SearchDiary(int.Parse(rtbYear.Text), int.Parse(rtbMonth.Text), int.Parse(rtbDay.Text));
 
+                if(list == null) return;
+
                 foreach (DiaryNode node in list)
                 {
                     node.showDiaryNode();
