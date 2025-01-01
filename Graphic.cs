@@ -13,15 +13,13 @@ namespace personal_note
 {
     public partial class Graphic : Form
     {
-        List<int> stars;
-        public Graphic(List<int> stars)
+        public Graphic(List<float> stars)
         {
-            this.stars = stars;
             InitializeComponent();
             ShowGraph(stars);
         }
 
-        private void ShowGraph(List<int> stars)
+        private void ShowGraph(List<float> stars)
         {
             // Create a new Chart
             Chart lineChart = new Chart();
@@ -41,7 +39,7 @@ namespace personal_note
             };
 
             // Add data points to the series
-            for (int i = 0; i < stars.Count; i++)
+            for (int i = 1; i < stars.Count; i++)
             {
                 series.Points.Add(new DataPoint(i, stars[i]));
             }
