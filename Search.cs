@@ -28,6 +28,9 @@ namespace personal_note
                 {
                     node.showDiaryNode();
                 }
+
+                Form1.mainForm.turnToDate(int.Parse(rtbYear.Text), int.Parse(rtbMonth.Text));
+                Form1.showSearchedDiary(list);
             }
             catch (Exception ex)
             {
@@ -40,13 +43,14 @@ namespace personal_note
             if (rtbStar.Text == "") return;
             try
             {
-                List<DiaryNode> list = DiaryTree.SearchMonthStar(int.Parse(rtbStar.Text),Form1.GetYear(),Form1.GetMonth());
+                List<DiaryNode> list = DiaryTree.SearchMonthStar(int.Parse(rtbStar.Text),Form1.mainForm.GetYear(),Form1.mainForm.GetMonth());
 
                 foreach (DiaryNode node in list)
                 {
                     node.showDiaryNode();
                 }
-                
+
+                Form1.showSearchedDiary(list);
             }
             catch (Exception ex)
             {
@@ -58,12 +62,14 @@ namespace personal_note
         {
             if (rtbTag.Text == "") return;
 
-            List<DiaryNode> list = DiaryTree.SearchDiaryTag(rtbTag.Text, Form1.GetYear(), Form1.GetMonth());
+            List<DiaryNode> list = DiaryTree.SearchDiaryTag(rtbTag.Text, Form1.mainForm.GetYear(), Form1.mainForm.GetMonth());
 
             foreach (DiaryNode node in list)
             {
                 node.showDiaryNode();
             }
+
+            Form1.showSearchedDiary(list);
         }
     }
 }

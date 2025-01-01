@@ -12,16 +12,18 @@ namespace personal_note
         public static Form1 mainForm;
         public Color colorBackGround = Color.Black;
         public Color colorText = Color.White;
+        public Color colorTextChosen = Color.Black;
         //public Color colorBorder = Color.White;
         public Color colorLabel = Color.DimGray;
+        public Color colorChosen = Color.Chartreuse;
 
         private List<RichTextBox> dates = new List<RichTextBox>();
         private List<TextBox> week = new List<TextBox>();
         private List<Label> notesTitle = new List<Label>();
         private Label Month = new Label();
         private Button nextMonth, lastMonth;
-        private static int year = 2024;
-        private static int month = 12;
+        private int year = 2024;
+        private int month = 12;
         private int monthStartDay = 0;
         private int lastMonthDays, currentMonthDays;
         private int hourForDiary = 20;
@@ -500,19 +502,36 @@ namespace personal_note
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        public static int GetYear()
+        public static void showSearchedDiary(List<DiaryNode> list)
+        {
+            foreach (Label l in mainForm.notesTitle)
+            {
+                l.BackColor = mainForm.colorLabel;
+                l.ForeColor = mainForm.colorText;
+            }
+            foreach (DiaryNode node in list)
+            {
+                node.label.BackColor = mainForm.colorChosen;
+                node.label.ForeColor = mainForm.colorTextChosen;
+            }
+        }
+
+        public void turnToDate(int year, int month)
+        {
+            this.year = year;
+            this.month = month;
+            updateCalendar();
+        }
+
+        public int GetYear()
         {
             return year;
         }
 
-        public int getYear()
-        {
-            return year;
-        }
-
-        public static int GetMonth()
+        public int GetMonth()
         {
             return month;
         }
+
     }
 }
