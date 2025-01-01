@@ -30,18 +30,21 @@
         {
             this.tp = new System.Windows.Forms.TabControl();
             this.tpDay = new System.Windows.Forms.TabPage();
-            this.tpStar = new System.Windows.Forms.TabPage();
-            this.tpTag = new System.Windows.Forms.TabPage();
-            this.rtbYear = new System.Windows.Forms.RichTextBox();
-            this.lblYear = new System.Windows.Forms.Label();
-            this.rtbMonth = new System.Windows.Forms.RichTextBox();
-            this.rtbDay = new System.Windows.Forms.RichTextBox();
-            this.lblDay = new System.Windows.Forms.Label();
-            this.lblMonth = new System.Windows.Forms.Label();
+            this.lblAlarm = new System.Windows.Forms.Label();
             this.btnDay = new System.Windows.Forms.Button();
+            this.lblMonth = new System.Windows.Forms.Label();
+            this.lblDay = new System.Windows.Forms.Label();
+            this.rtbDay = new System.Windows.Forms.RichTextBox();
+            this.rtbMonth = new System.Windows.Forms.RichTextBox();
+            this.lblYear = new System.Windows.Forms.Label();
+            this.rtbYear = new System.Windows.Forms.RichTextBox();
+            this.tpStar = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnStar = new System.Windows.Forms.Button();
             this.lblStar = new System.Windows.Forms.Label();
             this.rtbStar = new System.Windows.Forms.RichTextBox();
-            this.btnStar = new System.Windows.Forms.Button();
+            this.tpTag = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnTag = new System.Windows.Forms.Button();
             this.lblTag = new System.Windows.Forms.Label();
             this.rtbTag = new System.Windows.Forms.RichTextBox();
@@ -64,6 +67,7 @@
             // 
             // tpDay
             // 
+            this.tpDay.Controls.Add(this.lblAlarm);
             this.tpDay.Controls.Add(this.btnDay);
             this.tpDay.Controls.Add(this.lblMonth);
             this.tpDay.Controls.Add(this.lblDay);
@@ -79,8 +83,86 @@
             this.tpDay.Text = "Day";
             this.tpDay.UseVisualStyleBackColor = true;
             // 
+            // lblAlarm
+            // 
+            this.lblAlarm.AutoSize = true;
+            this.lblAlarm.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblAlarm.Location = new System.Drawing.Point(145, 0);
+            this.lblAlarm.Name = "lblAlarm";
+            this.lblAlarm.Size = new System.Drawing.Size(217, 40);
+            this.lblAlarm.TabIndex = 7;
+            this.lblAlarm.Text = "請輸入數字";
+            // 
+            // btnDay
+            // 
+            this.btnDay.Location = new System.Drawing.Point(197, 215);
+            this.btnDay.Name = "btnDay";
+            this.btnDay.Size = new System.Drawing.Size(125, 46);
+            this.btnDay.TabIndex = 6;
+            this.btnDay.Text = "Search";
+            this.btnDay.UseVisualStyleBackColor = true;
+            this.btnDay.Click += new System.EventHandler(this.btnDay_Click);
+            // 
+            // lblMonth
+            // 
+            this.lblMonth.AutoSize = true;
+            this.lblMonth.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblMonth.Location = new System.Drawing.Point(279, 104);
+            this.lblMonth.Name = "lblMonth";
+            this.lblMonth.Size = new System.Drawing.Size(113, 40);
+            this.lblMonth.TabIndex = 5;
+            this.lblMonth.Text = "month";
+            // 
+            // lblDay
+            // 
+            this.lblDay.AutoSize = true;
+            this.lblDay.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblDay.Location = new System.Drawing.Point(279, 169);
+            this.lblDay.Name = "lblDay";
+            this.lblDay.Size = new System.Drawing.Size(72, 40);
+            this.lblDay.TabIndex = 4;
+            this.lblDay.Text = "day";
+            // 
+            // rtbDay
+            // 
+            this.rtbDay.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rtbDay.Location = new System.Drawing.Point(147, 169);
+            this.rtbDay.Name = "rtbDay";
+            this.rtbDay.Size = new System.Drawing.Size(126, 40);
+            this.rtbDay.TabIndex = 3;
+            this.rtbDay.Text = "";
+            // 
+            // rtbMonth
+            // 
+            this.rtbMonth.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rtbMonth.Location = new System.Drawing.Point(147, 104);
+            this.rtbMonth.Name = "rtbMonth";
+            this.rtbMonth.Size = new System.Drawing.Size(126, 40);
+            this.rtbMonth.TabIndex = 2;
+            this.rtbMonth.Text = "";
+            // 
+            // lblYear
+            // 
+            this.lblYear.AutoSize = true;
+            this.lblYear.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblYear.Location = new System.Drawing.Point(279, 47);
+            this.lblYear.Name = "lblYear";
+            this.lblYear.Size = new System.Drawing.Size(83, 40);
+            this.lblYear.TabIndex = 1;
+            this.lblYear.Text = "year";
+            // 
+            // rtbYear
+            // 
+            this.rtbYear.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rtbYear.Location = new System.Drawing.Point(147, 47);
+            this.rtbYear.Name = "rtbYear";
+            this.rtbYear.Size = new System.Drawing.Size(126, 40);
+            this.rtbYear.TabIndex = 0;
+            this.rtbYear.Text = "";
+            // 
             // tpStar
             // 
+            this.tpStar.Controls.Add(this.label1);
             this.tpStar.Controls.Add(this.btnStar);
             this.tpStar.Controls.Add(this.lblStar);
             this.tpStar.Controls.Add(this.rtbStar);
@@ -92,8 +174,48 @@
             this.tpStar.Text = "Star";
             this.tpStar.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label1.Location = new System.Drawing.Point(153, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(217, 40);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "請輸入數字";
+            // 
+            // btnStar
+            // 
+            this.btnStar.Location = new System.Drawing.Point(195, 157);
+            this.btnStar.Name = "btnStar";
+            this.btnStar.Size = new System.Drawing.Size(125, 46);
+            this.btnStar.TabIndex = 7;
+            this.btnStar.Text = "Search";
+            this.btnStar.UseVisualStyleBackColor = true;
+            this.btnStar.Click += new System.EventHandler(this.btnStar_Click);
+            // 
+            // lblStar
+            // 
+            this.lblStar.AutoSize = true;
+            this.lblStar.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblStar.Location = new System.Drawing.Point(298, 81);
+            this.lblStar.Name = "lblStar";
+            this.lblStar.Size = new System.Drawing.Size(72, 40);
+            this.lblStar.TabIndex = 3;
+            this.lblStar.Text = "star";
+            // 
+            // rtbStar
+            // 
+            this.rtbStar.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rtbStar.Location = new System.Drawing.Point(166, 81);
+            this.rtbStar.Name = "rtbStar";
+            this.rtbStar.Size = new System.Drawing.Size(126, 40);
+            this.rtbStar.TabIndex = 2;
+            this.rtbStar.Text = "";
+            // 
             // tpTag
             // 
+            this.tpTag.Controls.Add(this.label2);
             this.tpTag.Controls.Add(this.btnTag);
             this.tpTag.Controls.Add(this.lblTag);
             this.tpTag.Controls.Add(this.rtbTag);
@@ -105,99 +227,15 @@
             this.tpTag.Text = "Tag";
             this.tpTag.UseVisualStyleBackColor = true;
             // 
-            // rtbYear
+            // label2
             // 
-            this.rtbYear.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rtbYear.Location = new System.Drawing.Point(152, 32);
-            this.rtbYear.Name = "rtbYear";
-            this.rtbYear.Size = new System.Drawing.Size(126, 40);
-            this.rtbYear.TabIndex = 0;
-            this.rtbYear.Text = "";
-            // 
-            // lblYear
-            // 
-            this.lblYear.AutoSize = true;
-            this.lblYear.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lblYear.Location = new System.Drawing.Point(284, 32);
-            this.lblYear.Name = "lblYear";
-            this.lblYear.Size = new System.Drawing.Size(83, 40);
-            this.lblYear.TabIndex = 1;
-            this.lblYear.Text = "year";
-            // 
-            // rtbMonth
-            // 
-            this.rtbMonth.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rtbMonth.Location = new System.Drawing.Point(152, 89);
-            this.rtbMonth.Name = "rtbMonth";
-            this.rtbMonth.Size = new System.Drawing.Size(126, 40);
-            this.rtbMonth.TabIndex = 2;
-            this.rtbMonth.Text = "";
-            // 
-            // rtbDay
-            // 
-            this.rtbDay.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rtbDay.Location = new System.Drawing.Point(152, 154);
-            this.rtbDay.Name = "rtbDay";
-            this.rtbDay.Size = new System.Drawing.Size(126, 40);
-            this.rtbDay.TabIndex = 3;
-            this.rtbDay.Text = "";
-            // 
-            // lblDay
-            // 
-            this.lblDay.AutoSize = true;
-            this.lblDay.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lblDay.Location = new System.Drawing.Point(284, 154);
-            this.lblDay.Name = "lblDay";
-            this.lblDay.Size = new System.Drawing.Size(72, 40);
-            this.lblDay.TabIndex = 4;
-            this.lblDay.Text = "day";
-            // 
-            // lblMonth
-            // 
-            this.lblMonth.AutoSize = true;
-            this.lblMonth.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lblMonth.Location = new System.Drawing.Point(284, 89);
-            this.lblMonth.Name = "lblMonth";
-            this.lblMonth.Size = new System.Drawing.Size(113, 40);
-            this.lblMonth.TabIndex = 5;
-            this.lblMonth.Text = "month";
-            // 
-            // btnDay
-            // 
-            this.btnDay.Location = new System.Drawing.Point(198, 215);
-            this.btnDay.Name = "btnDay";
-            this.btnDay.Size = new System.Drawing.Size(125, 46);
-            this.btnDay.TabIndex = 6;
-            this.btnDay.Text = "Search";
-            this.btnDay.UseVisualStyleBackColor = true;
-            // 
-            // lblStar
-            // 
-            this.lblStar.AutoSize = true;
-            this.lblStar.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lblStar.Location = new System.Drawing.Point(292, 74);
-            this.lblStar.Name = "lblStar";
-            this.lblStar.Size = new System.Drawing.Size(72, 40);
-            this.lblStar.TabIndex = 3;
-            this.lblStar.Text = "star";
-            // 
-            // rtbStar
-            // 
-            this.rtbStar.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rtbStar.Location = new System.Drawing.Point(160, 74);
-            this.rtbStar.Name = "rtbStar";
-            this.rtbStar.Size = new System.Drawing.Size(126, 40);
-            this.rtbStar.TabIndex = 2;
-            this.rtbStar.Text = "";
-            // 
-            // btnStar
-            // 
-            this.btnStar.Location = new System.Drawing.Point(195, 157);
-            this.btnStar.Name = "btnStar";
-            this.btnStar.Size = new System.Drawing.Size(125, 46);
-            this.btnStar.TabIndex = 7;
-            this.btnStar.Text = "Search";
-            this.btnStar.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label2.Location = new System.Drawing.Point(154, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(217, 40);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "請輸入文字";
             // 
             // btnTag
             // 
@@ -207,6 +245,7 @@
             this.btnTag.TabIndex = 10;
             this.btnTag.Text = "Search";
             this.btnTag.UseVisualStyleBackColor = true;
+            this.btnTag.Click += new System.EventHandler(this.btnTag_Click);
             // 
             // lblTag
             // 
@@ -265,5 +304,8 @@
         private System.Windows.Forms.Button btnTag;
         private System.Windows.Forms.Label lblTag;
         private System.Windows.Forms.RichTextBox rtbTag;
+        private System.Windows.Forms.Label lblAlarm;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

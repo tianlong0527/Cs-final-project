@@ -31,12 +31,14 @@ namespace personal_note
         public void showDiaryNode()
         {
             Console.WriteLine($"year:{year} month:{month} day:{day}");
+            Console.WriteLine(title);
+            Console.WriteLine(star);
             for (int i = 0; i < tag.Count; i++)
             {
                 Console.Write( tag[i] + " ");
             }
             Console.WriteLine();
-            Console.WriteLine(title + "\n" + content);
+            Console.WriteLine(content);
         }
     }
 }
