@@ -402,7 +402,7 @@ namespace personal_note
                     diaryNode.label.Location = new Point(x, y + diaryNode.index * 22);
                     diaryNode.label.Tag = diaryNode;
                     diaryNode.label.Visible = true;
-                    diaryNode.label.Click += label_click;
+                    diaryNode.label.MouseClick += label_MouseClick;
                     notesTitle.Add(diaryNode.label);
                     if (diaryNode.index >= 3)
                     {
@@ -414,12 +414,30 @@ namespace personal_note
             }
         }
 
-        private void label_click(object sender, EventArgs e)
+        private void label_MouseClick(object sender, MouseEventArgs e)
         {
             Label label = sender as Label;
             DiaryNode diaryNode = label.Tag as DiaryNode; // the diaryNode that the label belongs to
-            Note note = new Note(diaryNode);
-            note.Show();
+            if (e.Button == MouseButtons.Left)
+            {
+                Note note = new Note(diaryNode);
+                note.Show();
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                DialogResult result = MessageBox.Show("是否刪除日記?", "刪除", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    DiaryTree.DeleteDiary(diaryNode);
+                    foreach (Label l in notesTitle)
+                    {
+                        this.Controls.Remove(l);
+                    }
+                    notesTitle.Clear();
+                    buildNotesTitleLabel();
+                }
+            }
         }
 
         private void showFullLabel(int date)
@@ -483,6 +501,11 @@ namespace personal_note
         }
 
         public static int GetYear()
+        {
+            return year;
+        }
+
+        public int getYear()
         {
             return year;
         }
