@@ -474,5 +474,14 @@ namespace personal_note
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-    }
+        public int getYear()
+        {
+            return year;
+        }
+
+        public int getMonth()
+        {
+            return month;
+
+        }
 }
