@@ -133,7 +133,18 @@ namespace personal_note
             DiaryTreeNode yearNode = searchYear(diaryNode.year, root);
             DiaryTreeNode monthNode = searchMonth(diaryNode.month, yearNode);
             DiaryTreeNode dayNode = searchDay(diaryNode.day, monthNode);
+            int index = diaryNode.index + 1;
             dayNode.nodes.Remove(diaryNode);
+
+            for(int i = 0;i < dayNode.nodes.Count();i++)
+            {
+                if (dayNode.nodes[i].index == index)
+                {
+                    dayNode.nodes[i].index--;
+                    index++;
+                }
+            }
+
             Console.WriteLine($"刪除成功: {diaryNode.month}月{diaryNode.day} \n");
         }
 
