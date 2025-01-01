@@ -42,7 +42,7 @@ namespace personal_note
             isNoteEmpty = false;
             isTitleEmpty = false;
             foreach(string str in diaryNode.tag){
-                lblTagText.Text += str + " ";
+                lblTagText.Text += "#"+str + " ";
             }
             rtbDate.Text = $"{diaryNode.year}年 {diaryNode.month}月 {diaryNode.day}日";
         }
@@ -115,7 +115,7 @@ namespace personal_note
             }else if (btnAdd.Text.Equals("Ensure"))
             {
                 isStore = false;
-                lblTagText.Text += rtbAdd.Text + ", ";
+                lblTagText.Text += "#"+rtbAdd.Text + " ";
                 lblTagText.Visible = true;
                 rtbAdd.Visible = false;
                 list.Add(rtbAdd.Text);
@@ -173,6 +173,14 @@ namespace personal_note
             }
         }
 
+        private void rtbAdd_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // 禁止 Enter 键的输入
+                e.Handled = true;          // 防止其他事件触发
+            }
+        }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {

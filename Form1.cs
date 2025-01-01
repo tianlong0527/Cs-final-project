@@ -463,13 +463,12 @@ namespace personal_note
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            // 判斷是否按下 Ctrl + G
-            if (keyData == (Keys.Control | Keys.G))
+            // 判斷是否按下 Ctrl + S
+            if (keyData == (Keys.Control | Keys.F))
             {
-                List<int> stars = new List<int>();
-                
-                Graphic graphic = new Graphic(stars);
-                graphic.Show();
+                Search search = new Search();
+                search.Show();
+                return true;    // 表示該按鍵組合已處理
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
