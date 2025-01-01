@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -19,8 +20,8 @@ namespace personal_note
         private List<Label> notesTitle = new List<Label>();
         private Label Month = new Label();
         private Button nextMonth, lastMonth;
-        private int year = 2024;
-        private int month = 12;
+        private static int year = 2024;
+        private static int month = 12;
         private int monthStartDay = 0;
         private int lastMonthDays, currentMonthDays;
         private int hourForDiary = 20;
@@ -488,8 +489,20 @@ namespace personal_note
                 search.Show();
                 return true;    // 表示該按鍵組合已處理
             }
-
+            // 判斷是否按下 Ctrl + G
+            if (keyData == (Keys.Control | Keys.G))
+            {
+                List<float> stars = new List<float>();
+                stars = DiaryTree.get30daysStar(year, month, 31);
+                Graphic graphic = new Graphic(stars);
+                graphic.Show();
+            }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        public static int GetYear()
+        {
+            return year;
         }
 
         public int getYear()
@@ -497,10 +510,9 @@ namespace personal_note
             return year;
         }
 
-        public int getMonth()
+        public static int GetMonth()
         {
             return month;
-
         }
     }
 }

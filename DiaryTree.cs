@@ -217,13 +217,13 @@ namespace personal_note
             return diaryTreeNode.nodes;
         }
 
-        public static List<DiaryNode> SearchDiaryTag(string tag, int year, int month, int days)
+        public static List<DiaryNode> SearchDiaryTag(string tag, int year, int month)
         {
             List<DiaryNode> ret = new List<DiaryNode>();
 
-            for(int i = 1;i <= days;i++)
+            for(int i = 1;i < 32;i++)
             {
-                foreach(DiaryNode node in SearchDiary(year,month,days))
+                foreach(DiaryNode node in SearchDiary(year,month,i))
                 {
                     foreach(string str in node.tag)
                     {
@@ -239,13 +239,32 @@ namespace personal_note
             return ret;
         }
 
+        public static List<DiaryNode> SearchMonthStar(int star, int year, int month)
+        {
+            List<DiaryNode> ret = new List<DiaryNode>();
+
+            for (int i = 1; i < 32; i++)
+            {
+                foreach (DiaryNode node in SearchDiary(year, month, i))
+                {
+                    if (node.star == star)
+                    {
+                        ret.Add(node);
+                        break;
+                    }
+                }
+            }
+
+            return ret;
+        }
+
         public static List<float> get30daysStar(int year,int month,int days)
         {
             List<float> ret = new List<float>();
           
             for(int i = 0; i < 32; i++)
             {
-                ret.Add(-1);
+                ret.Add(0);
             }
 
             for(int i = 1; i < days; i++)
