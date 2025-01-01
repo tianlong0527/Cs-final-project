@@ -16,5 +16,23 @@ namespace personal_note
         {
             InitializeComponent();
         }
+
+        private void btnDay_Click(object sender, EventArgs e)
+        {
+            if (rtbDay.Text == "" || rtbYear.Text == "" || rtbMonth.Text == "") return;
+            try
+            {
+                List<DiaryNode> list = DiaryTree.SearchDiary(int.Parse(rtbYear.Text), int.Parse(rtbMonth.Text), int.Parse(rtbDay.Text));
+
+                foreach (DiaryNode node in list)
+                {
+                    node.showDiaryNode();
+                }
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
+        }
     }
 }

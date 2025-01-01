@@ -45,6 +45,9 @@
             this.btnTag = new System.Windows.Forms.Button();
             this.lblTag = new System.Windows.Forms.Label();
             this.rtbTag = new System.Windows.Forms.RichTextBox();
+            this.lblAlarm = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tp.SuspendLayout();
             this.tpDay.SuspendLayout();
             this.tpStar.SuspendLayout();
@@ -64,6 +67,7 @@
             // 
             // tpDay
             // 
+            this.tpDay.Controls.Add(this.lblAlarm);
             this.tpDay.Controls.Add(this.btnDay);
             this.tpDay.Controls.Add(this.lblMonth);
             this.tpDay.Controls.Add(this.lblDay);
@@ -81,6 +85,7 @@
             // 
             // tpStar
             // 
+            this.tpStar.Controls.Add(this.label1);
             this.tpStar.Controls.Add(this.btnStar);
             this.tpStar.Controls.Add(this.lblStar);
             this.tpStar.Controls.Add(this.rtbStar);
@@ -94,6 +99,7 @@
             // 
             // tpTag
             // 
+            this.tpTag.Controls.Add(this.label2);
             this.tpTag.Controls.Add(this.btnTag);
             this.tpTag.Controls.Add(this.lblTag);
             this.tpTag.Controls.Add(this.rtbTag);
@@ -108,7 +114,7 @@
             // rtbYear
             // 
             this.rtbYear.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rtbYear.Location = new System.Drawing.Point(152, 32);
+            this.rtbYear.Location = new System.Drawing.Point(147, 47);
             this.rtbYear.Name = "rtbYear";
             this.rtbYear.Size = new System.Drawing.Size(126, 40);
             this.rtbYear.TabIndex = 0;
@@ -118,7 +124,7 @@
             // 
             this.lblYear.AutoSize = true;
             this.lblYear.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lblYear.Location = new System.Drawing.Point(284, 32);
+            this.lblYear.Location = new System.Drawing.Point(279, 47);
             this.lblYear.Name = "lblYear";
             this.lblYear.Size = new System.Drawing.Size(83, 40);
             this.lblYear.TabIndex = 1;
@@ -127,7 +133,7 @@
             // rtbMonth
             // 
             this.rtbMonth.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rtbMonth.Location = new System.Drawing.Point(152, 89);
+            this.rtbMonth.Location = new System.Drawing.Point(147, 104);
             this.rtbMonth.Name = "rtbMonth";
             this.rtbMonth.Size = new System.Drawing.Size(126, 40);
             this.rtbMonth.TabIndex = 2;
@@ -136,7 +142,7 @@
             // rtbDay
             // 
             this.rtbDay.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rtbDay.Location = new System.Drawing.Point(152, 154);
+            this.rtbDay.Location = new System.Drawing.Point(147, 169);
             this.rtbDay.Name = "rtbDay";
             this.rtbDay.Size = new System.Drawing.Size(126, 40);
             this.rtbDay.TabIndex = 3;
@@ -146,7 +152,7 @@
             // 
             this.lblDay.AutoSize = true;
             this.lblDay.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lblDay.Location = new System.Drawing.Point(284, 154);
+            this.lblDay.Location = new System.Drawing.Point(279, 169);
             this.lblDay.Name = "lblDay";
             this.lblDay.Size = new System.Drawing.Size(72, 40);
             this.lblDay.TabIndex = 4;
@@ -156,7 +162,7 @@
             // 
             this.lblMonth.AutoSize = true;
             this.lblMonth.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lblMonth.Location = new System.Drawing.Point(284, 89);
+            this.lblMonth.Location = new System.Drawing.Point(279, 104);
             this.lblMonth.Name = "lblMonth";
             this.lblMonth.Size = new System.Drawing.Size(113, 40);
             this.lblMonth.TabIndex = 5;
@@ -164,12 +170,13 @@
             // 
             // btnDay
             // 
-            this.btnDay.Location = new System.Drawing.Point(198, 215);
+            this.btnDay.Location = new System.Drawing.Point(197, 215);
             this.btnDay.Name = "btnDay";
             this.btnDay.Size = new System.Drawing.Size(125, 46);
             this.btnDay.TabIndex = 6;
             this.btnDay.Text = "Search";
             this.btnDay.UseVisualStyleBackColor = true;
+            this.btnDay.Click += new System.EventHandler(this.btnDay_Click);
             // 
             // lblStar
             // 
@@ -227,6 +234,36 @@
             this.rtbTag.TabIndex = 8;
             this.rtbTag.Text = "";
             // 
+            // lblAlarm
+            // 
+            this.lblAlarm.AutoSize = true;
+            this.lblAlarm.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblAlarm.Location = new System.Drawing.Point(145, 0);
+            this.lblAlarm.Name = "lblAlarm";
+            this.lblAlarm.Size = new System.Drawing.Size(217, 40);
+            this.lblAlarm.TabIndex = 7;
+            this.lblAlarm.Text = "請輸入數字";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label1.Location = new System.Drawing.Point(153, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(217, 40);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "請輸入數字";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label2.Location = new System.Drawing.Point(154, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(217, 40);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "請輸入文字";
+            // 
             // Search
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -265,5 +302,8 @@
         private System.Windows.Forms.Button btnTag;
         private System.Windows.Forms.Label lblTag;
         private System.Windows.Forms.RichTextBox rtbTag;
+        private System.Windows.Forms.Label lblAlarm;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
