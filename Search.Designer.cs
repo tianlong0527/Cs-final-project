@@ -245,6 +245,7 @@
             this.btnTag.TabIndex = 10;
             this.btnTag.Text = "Search";
             this.btnTag.UseVisualStyleBackColor = true;
+            this.btnTag.Click += new System.EventHandler(this.btnTag_Click);
             // 
             // lblTag
             // 

@@ -53,5 +53,17 @@ namespace personal_note
                 return;
             }
         }
+
+        private void btnTag_Click(object sender, EventArgs e)
+        {
+            if (rtbTag.Text == "") return;
+
+            List<DiaryNode> list = DiaryTree.SearchDiaryTag(rtbTag.Text, Form1.GetYear(), Form1.GetMonth());
+
+            foreach (DiaryNode node in list)
+            {
+                node.showDiaryNode();
+            }
+        }
     }
 }
