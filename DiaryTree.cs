@@ -3,6 +3,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using System.IO;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 
 namespace personal_note
@@ -241,7 +242,6 @@ namespace personal_note
                         if(str == tag)
                         {
                             ret.Add(node);
-                            break;
                         }
                     }
                 }
@@ -261,7 +261,6 @@ namespace personal_note
                     if (node.star == star)
                     {
                         ret.Add(node);
-                        break;
                     }
                 }
             }
