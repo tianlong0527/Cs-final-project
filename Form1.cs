@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -19,8 +20,8 @@ namespace personal_note
         private List<Label> notesTitle = new List<Label>();
         private Label Month = new Label();
         private Button nextMonth, lastMonth;
-        private int year = 2024;
-        private int month = 12;
+        private static int year = 2024;
+        private static int month = 12;
         private int monthStartDay = 0;
         private int lastMonthDays, currentMonthDays;
         private int hourForDiary = 20;
@@ -481,5 +482,14 @@ namespace personal_note
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+        public static int GetYear()
+        {
+            return year;
+        }
+
+        public static int GetMonth()
+        {
+            return month;
+        }
     }
 }
