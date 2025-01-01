@@ -460,5 +460,18 @@ namespace personal_note
             }
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            // 判斷是否按下 Ctrl + S
+            if (keyData == (Keys.Control | Keys.F))
+            {
+                Search search = new Search();
+                search.Show();
+                return true;    // 表示該按鍵組合已處理
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
     }
 }
