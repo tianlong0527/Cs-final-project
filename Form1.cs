@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace personal_note
 {
@@ -470,7 +471,14 @@ namespace personal_note
                 search.Show();
                 return true;    // 表示該按鍵組合已處理
             }
-
+            // 判斷是否按下 Ctrl + G
+            if (keyData == (Keys.Control | Keys.G))
+            {
+                List<float> stars = new List<float>();
+                stars = DiaryTree.get30daysStar(year, month, 31);
+                Graphic graphic = new Graphic(stars);
+                graphic.Show();
+            }
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
