@@ -34,5 +34,24 @@ namespace personal_note
                 return;
             }
         }
+
+        private void btnStar_Click(object sender, EventArgs e)
+        {
+            if (rtbStar.Text == "") return;
+            try
+            {
+                List<DiaryNode> list = DiaryTree.SearchMonthStar(int.Parse(rtbStar.Text),Form1.GetYear(),Form1.GetMonth());
+
+                foreach (DiaryNode node in list)
+                {
+                    node.showDiaryNode();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
+        }
     }
 }

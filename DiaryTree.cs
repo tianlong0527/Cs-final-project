@@ -239,6 +239,25 @@ namespace personal_note
             return ret;
         }
 
+        public static List<DiaryNode> SearchMonthStar(int star, int year, int month)
+        {
+            List<DiaryNode> ret = new List<DiaryNode>();
+
+            for (int i = 1; i < 32; i++)
+            {
+                foreach (DiaryNode node in SearchDiary(year, month, i))
+                {
+                    if (node.star == star)
+                    {
+                        ret.Add(node);
+                        break;
+                    }
+                }
+            }
+
+            return ret;
+        }
+
         public static List<float> get30daysStar(int year,int month,int days)
         {
             List<float> ret = new List<float>();
