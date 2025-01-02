@@ -23,15 +23,15 @@ namespace personal_note
             try
             {
                 List<DiaryNode> list = DiaryTree.SearchDiary(int.Parse(rtbYear.Text), int.Parse(rtbMonth.Text), int.Parse(rtbDay.Text));
+                Form1.mainForm.turnToDate(int.Parse(rtbYear.Text), int.Parse(rtbMonth.Text));
 
-                if(list == null) return;
+                if (list == null) return;
 
                 foreach (DiaryNode node in list)
                 {
                     node.showDiaryNode();
                 }
 
-                Form1.mainForm.turnToDate(int.Parse(rtbYear.Text), int.Parse(rtbMonth.Text));
                 Form1.showSearchedDiary(list);
             }
             catch (Exception ex)

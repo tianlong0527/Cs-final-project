@@ -12,14 +12,12 @@ namespace personal_note
         public static Form1 mainForm;
         public Color colorBackGround = Color.Black;
         public Color colorText = Color.White;
-        public Color colorTextChosen = Color.Black;
-        //public Color colorBorder = Color.White;
         public Color colorLabel = Color.DimGray;
-        public Color colorChosen = Color.Chartreuse;
 
         private List<RichTextBox> dates = new List<RichTextBox>();
         private List<TextBox> week = new List<TextBox>();
         private List<Label> notesTitle = new List<Label>();
+        private List<Color> colors = new List<Color>();
         private Label Month = new Label();
         private Button nextMonth, lastMonth;
         private int year = 2024;
@@ -34,6 +32,9 @@ namespace personal_note
         private DiaryTreeNode yearNode;
         private DiaryTreeNode monthNode;
         private Timer detect;
+        private Color colorTextChosen = Color.Black;
+        private Color colorChosen = Color.Chartreuse;
+        private int colorIndex = 0;
         public Form1()
         {
             mainForm = this;
@@ -43,6 +44,7 @@ namespace personal_note
             InitializeButton();
             InitializeDiary();
             InitializeTimer();
+            InitializeColors();
             DiaryTree.BuildTreeFromFiles();
             updateCalendar();
             detect.Start();
@@ -123,6 +125,7 @@ namespace personal_note
                         break;
                 }
                 tb.ReadOnly = true;
+                tb.Cursor = Cursors.Arrow;
                 week.Add(tb);
                 this.Controls.Add(tb);
             }
@@ -194,6 +197,13 @@ namespace personal_note
             detect.Interval = 1000;
             detect.Tick += new EventHandler(detect_Tick);
             detect.Start();
+        }
+
+        private void InitializeColors()
+        { // rtb/tb BackColor, ForeColor, lbl BackColor, lbl SForeColor, lbl SBackColor
+            colors.AddRange(new List<Color> { Color.Black, Color.White, Color.DimGray, Color.Black, Color.Chartreuse });
+            colors.AddRange(new List<Color> { Color.White, Color.Black, Color.LightBlue, Color.Black, Color.LightGreen });
+            colors.AddRange(new List<Color> { ColorTranslator.FromHtml("#EE6352"), Color.Black, ColorTranslator.FromHtml("#02B2E3"), Color.Black, ColorTranslator.FromHtml("#57A773") });
         }
 
         private void richTextBox_Click(object sender, EventArgs e)
@@ -482,6 +492,52 @@ namespace personal_note
             }
         }
 
+        private void changeColor(int i)
+        {
+            if (i == 1) // up
+            {
+                colorIndex++;
+                if (colorIndex == colors.Count / 5)
+                {
+                    colorIndex = 0;
+                }
+            }
+            else // down
+            {
+                colorIndex--;
+                if (colorIndex == -1)
+                {
+                    colorIndex = colors.Count / 5 - 1;
+                }
+            }
+            colorBackGround = colors[colorIndex * 5];
+            colorText = colors[colorIndex * 5 + 1];
+            colorLabel = colors[colorIndex * 5 + 2];
+            colorTextChosen = colors[colorIndex * 5 + 3];
+            colorChosen = colors[colorIndex * 5 + 4];
+            foreach (RichTextBox rtb in dates)
+            {
+                rtb.BackColor = colorBackGround;
+                if (rtb.ForeColor != Color.Gray) rtb.ForeColor = colorText;
+            }
+            foreach (TextBox tb in week)
+            {
+                tb.BackColor = colorBackGround;
+                tb.ForeColor = colorText;
+            }
+            foreach (Label l in notesTitle)
+            {
+                l.BackColor = colorLabel;
+                l.ForeColor = colorText;
+            }
+            Month.ForeColor = colorText;
+            nextMonth.BackColor = colorBackGround;
+            nextMonth.ForeColor = colorText;
+            lastMonth.BackColor = colorBackGround;
+            lastMonth.ForeColor = colorText;
+            this.BackColor = colorBackGround;
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             // 判斷是否按下 Ctrl + S
@@ -498,6 +554,20 @@ namespace personal_note
                 stars = DiaryTree.get30daysStar(year, month, 31);
                 Graphic graphic = new Graphic(stars);
                 graphic.Show();
+            }
+            // 判斷是否按下上鍵
+            if (keyData == Keys.Up)
+            {
+                Console.WriteLine("Up");
+                changeColor(1);
+                return true;
+            }
+            // 判斷是否按下下鍵
+            if (keyData == Keys.Down)
+            {
+                Console.WriteLine("Down");
+                changeColor(0);
+                return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
