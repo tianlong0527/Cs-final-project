@@ -33,7 +33,7 @@ namespace personal_note
             // Create a Series and add data points
             Series series = new Series
             {
-                Name = "StarsData",
+                Name = "心情指數",
                 IsVisibleInLegend = true,
                 ChartType = SeriesChartType.Line
             };
@@ -54,7 +54,6 @@ namespace personal_note
 
             // Add the Chart to the Form
             this.Controls.Add(lineChart);
-
         }
     }
 }
